@@ -62,7 +62,7 @@ export default function About() {
             {t('about.Q2')}
           </Typography>
           <Typography component="p" variant="subtitle1">
-            {t('about.AnswerQ2')} <a href={flags().moreAboutCliniserve}>{t('about.Q2')}</a>.
+            {t('about.AnswerQ2')} <a href={flags().moreAboutFuture}>{t('about.Q2')}</a>.
           </Typography>
         </Grid>
       </Paper>
@@ -73,7 +73,7 @@ export default function About() {
             {t('about.Q3')}
           </Typography>
           <Typography component="p" variant="subtitle1">
-            {t('about.AnswerQ3')} <a href={flags().moreAboutCliniserveTest}>{t('about.Q3')}</a>.
+            {t('about.AnswerQ3')} <a href={flags().moreAboutFuture}>{t('about.Q3')}</a>.
           </Typography>
         </Grid>
       </Paper>

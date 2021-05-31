@@ -1,10 +1,10 @@
 {
-    "title": "Cliniserve Engineering Recruiting Test",
+    "title": "Future",
     "dashboard": {
         "title": "Armaturenbrett",
         "error": "Bei der API-Anfrage ist ein Fehler aufgetreten!",
         "table": {
-            "title": "Information", 
+            "title": "Information",
             "ags": "Code",
             "name": "Stadt",
             "date": "Datum",
@@ -21,14 +21,14 @@
     "about": {
         "Q1": "Mehr über Covid-19",
         "AnswerQ1": "Sie können mehr über Covid-19 in erfahren ",
-        "Q2": "Mehr über Cliniserve",
-        "AnswerQ2": "Erfahren Sie mehr über Cliniserver auf der offiziellen Website ",
+        "Q2": "Mehr über Future",
+        "AnswerQ2": "Erfahren Sie mehr über Futurer auf der offiziellen Website ",
         "Q3": "Mehr zu dieser Seite",
-        "AnswerQ3": "Informationen zum Cliniserve Engineering Recruiting Test in der Datei README.md "
+        "AnswerQ3": "Informationen zum Future in der Datei README.md "
     },
     "drawer": {
         "dashboard": "Armaturenbrett",
         "about": "Mehr Info"
     },
-    "footer": "Cliniserve Engineering Recruiting Test"
+    "footer": "Future"
 }

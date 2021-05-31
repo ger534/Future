@@ -1,5 +1,5 @@
 {
-    "title": "Cliniserve Engineering Recruiting Test",
+    "title": "Future",
     "dashboard": {
         "title": "Dashboard",
         "error": "Something went wrong with the API request!",
@@ -21,10 +21,10 @@
     "about": {
         "Q1": "More about Covid-19",
         "AnswerQ1": "You can learn more about Covid-19 in ",
-        "Q2": "More about Cliniserve",
-        "AnswerQ2": "Learn more about Cliniserver in the official site ",
+        "Q2": "More about Future",
+        "AnswerQ2": "Learn more about Futurer in the official site ",
         "Q3": "More about this page",
-        "AnswerQ3": "About the Cliniserve Engineering Recruiting Test in the README.md file "
+        "AnswerQ3": "About the Future in the README.md file "
     },
     "drawer": {
         "dashboard": "Dashboard",
@@ -32,5 +32,5 @@
         "home": "Home",
         "termsandconditions": "Terms and conditions"
     },
-    "footer": "Cliniserve Engineering Recruiting Test"
+    "footer": "Future"
 }

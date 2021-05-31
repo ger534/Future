@@ -201,7 +201,7 @@ function App() {
   function Footer(props) {
     return (
       <Typography variant="body2" color="textSecondary" align="center" {...props}>
-        <a href={flags().moreAboutCliniserveTest} style={{ textDecoration: 'none', color: 'gray' }}>{t('footer')}</a>
+        <a href={flags().moreAboutFuture} style={{ textDecoration: 'none', color: 'gray' }}>{t('footer')}</a>
         {' '}
         {new Date().getFullYear()}
         {'.'}

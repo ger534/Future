@@ -4,8 +4,8 @@ const prodConfig = {
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
     moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutCliniserve: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutCliniserveTest: "https://github.com/Cliniserve/EngineeringTest"
+    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
+    moreAboutFuture: "https://github.com/Future/EngineeringTest"
 }
 
 const preProdConfig = {
@@ -14,8 +14,8 @@ const preProdConfig = {
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
     moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutCliniserve: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutCliniserveTest: "https://github.com/Cliniserve/EngineeringTest"
+    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
+    moreAboutFuture: "https://github.com/Future/EngineeringTest"
 }
 
 const qaConfig = {
@@ -24,8 +24,8 @@ const qaConfig = {
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
     moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutCliniserve: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutCliniserveTest: "https://github.com/Cliniserve/EngineeringTest"
+    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
+    moreAboutFuture: "https://github.com/Future/EngineeringTest"
 }
 
 const devConfig = {
@@ -34,8 +34,8 @@ const devConfig = {
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
     moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutCliniserve: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutCliniserveTest: "https://github.com/Cliniserve/EngineeringTest"
+    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
+    moreAboutFuture: "https://github.com/Future/EngineeringTest"
 }
 
 const localConfig = {
@@ -44,25 +44,25 @@ const localConfig = {
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
     moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutCliniserve: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutCliniserveTest: "https://github.com/Cliniserve/EngineeringTest"
+    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
+    moreAboutFuture: "https://github.com/Future/EngineeringTest"
 }
 
 export const flags = () => {
-    
+
     const isQA = /qa/
     const isDev = /dev/
     const isPreProd = /preprod/
     const location = window.location.href
     const host = window.location.host
 
-    if(isPreProd.exec(location)){
+    if (isPreProd.exec(location)) {
         return preProdConfig
-    } else if(isDev.exec(location)){
+    } else if (isDev.exec(location)) {
         return devConfig
-    } else if(isQA.exec(location)){
+    } else if (isQA.exec(location)) {
         return qaConfig
-    } else if(host === 'localhost:3000'){
+    } else if (host === 'localhost:3000') {
         return localConfig
     } else {
         return prodConfig
