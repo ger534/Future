@@ -28,7 +28,8 @@
     },
     "drawer": {
         "dashboard": "Armaturenbrett",
-        "about": "Mehr Info"
+        "about": "Mehr Info",
+        "threezerofive": "305"
     },
     "footer": "Future"
 }

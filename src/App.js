@@ -18,6 +18,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
 import Brightness6Icon from '@material-ui/icons/Brightness6';
+import FormatPaintIcon from '@material-ui/icons/FormatPaint';
 
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
@@ -37,6 +38,7 @@ import { flags } from './flags'
 import Dashbord from '../src/components/dashboard/Dashboard'
 import About from '../src/components/about/About'
 import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
+import ThreeZeroFive from '../src/components/ThreeZeroFive/ThreeZeroFive'
 
 import {
   BrowserRouter as Router,
@@ -134,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
 
 //array for menu
 let menu = [
-  {
+  /*{
     icon: <DashboardIcon />,
     text: 'drawer.dashboard',
     route: '/'
@@ -148,6 +150,11 @@ let menu = [
     icon: <HomeIcon />,
     text: 'drawer.termsandconditions',
     route: '/termsandconditions'
+  },*/
+  {
+    icon: <FormatPaintIcon />,
+    text: 'drawer.threezerofive',
+    route: '/threezerofive'
   }
 ]
 
@@ -282,11 +289,13 @@ function App() {
               <Container maxWidth="lg" className={classes.container}>
 
                 <Switch>
-                  <Route path="/dashboard" component={Dashbord} />
+                  {/*<Route path="/dashboard" component={Dashbord} />*/}
 
-                  <Route path="/about" component={About} />
+                  {/*<Route path="/about" component={About} />*/}
 
-                  <Route path="/termsandconditions" component={TermsAndConditions} />
+                  {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
+                  
+                  <Route path="/threezerofive" component={ThreeZeroFive} />
 
                   <Route render={() => <Dashbord />} />
                 </Switch>
