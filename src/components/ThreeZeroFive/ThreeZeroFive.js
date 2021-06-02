@@ -63,7 +63,7 @@ export default function ThreeZeroFive() {
         305, humano después de todo
       </Typography>
       <div style={{ whiteSpace: "pre-wrap" }}>{text}</div>
-      <Paper className={fixedHeightPaper}>
+      {/*<Paper className={fixedHeightPaper}>
         <Grid item md={12}>
           <Typography color="primary" component="p" variant="h3">
             305
@@ -74,7 +74,7 @@ export default function ThreeZeroFive() {
 
           </Typography>
         </Grid>
-      </Paper>
+      </Paper>*/}
 
     </Grid>
 
