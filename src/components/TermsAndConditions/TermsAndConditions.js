@@ -10,7 +10,6 @@ import { flags } from '../../flags'
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../Themes"
 import  {useDarkMode} from "../useDarkMode"
-import { TermsAndConditionsText } from './TermsAndConditionsText'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +52,7 @@ export default function TermsAndConditions() {
 
   return (
       <Grid container spacing={3}>
-        <div style={{whiteSpace: "pre-wrap"}}>{TermsAndConditionsText}</div>
+        <div style={{whiteSpace: "pre-wrap"}}>WIP</div>
         <Paper className={fixedHeightPaper}>
           <Grid item md={12}>
             <Typography color="primary" component="p" variant="h3">
@@ -61,7 +60,7 @@ export default function TermsAndConditions() {
             </Typography>
             <Typography component="p" variant="subtitle1">
 
-              {TermsAndConditionsText}
+              WIP
 
           </Typography>
           </Grid>
