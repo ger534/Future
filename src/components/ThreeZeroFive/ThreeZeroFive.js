@@ -7,6 +7,8 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import ChapterHOC from '../../libs/ChapterHOC';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
@@ -33,29 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ThreeZeroFive() {
+function ThreeZeroFive(props) {
 
   const classes = useStyles();
 
   //language
   const { t } = useTranslation('common');
 
-  const [text, SetText] = useState("");
+  //const [text, setText] = useState("");
+
+  const { text, setText } = props;
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  useEffect(() => {
-    axios("http://localhost:3001/threezerofive", {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      //data: payload,
-    }).then(response => {
-      console.log(response)
-      SetText(response.data)
-    })
-  }, [])
+  
 
   return (
     <Grid container spacing={3}>
@@ -80,3 +73,7 @@ export default function ThreeZeroFive() {
 
   );
 }
+
+export default ChapterHOC(ThreeZeroFive);
+
+//"Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web"

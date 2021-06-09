@@ -35,6 +35,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import { flags } from './flags'
 
+import Home from '../src/components/home/Home'
 import Dashbord from '../src/components/dashboard/Dashboard'
 import About from '../src/components/about/About'
 import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
@@ -43,7 +44,7 @@ import ThreeZeroFive from '../src/components/ThreeZeroFive/ThreeZeroFive'
 import {
   BrowserRouter as Router,
   Switch,
-  Link,
+  Link, 
   Route
 } from 'react-router-dom';
 
@@ -297,7 +298,7 @@ function App() {
                   
                   <Route path="/threezerofive" component={ThreeZeroFive} />
 
-                  <Route render={() => <Dashbord />} />
+                  <Route render={() => <Home />} />
                 </Switch>
 
                 <Box pt={4}>
