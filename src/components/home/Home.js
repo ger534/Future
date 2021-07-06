@@ -11,6 +11,19 @@ import tecnotopia_white from '../../assets/tecnotopia_white.png'
 import tecnotopia_black from '../../assets/tecnotopia_black.png'
 import tecnotopia_black_v2 from '../../assets/tecnotopia_black_v2.png'
 
+
+/*const theme = createTheme();
+
+theme.typography.h3 = {
+  fontSize: '1.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2.4rem',
+  },
+};*/
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'block',
@@ -34,6 +47,15 @@ const useStyles = makeStyles((theme) => ({
         height: 240,
         width: "100%"
     },
+    h3: {
+        fontSize: '1.2rem',
+        '@media (min-width:600px)': {
+            fontSize: '1.5rem',
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: '2.4rem',
+        }
+    }
 }));
 
 function Home(props) {
@@ -69,13 +91,14 @@ function Home(props) {
 
 
             <Grid container spacing={3} direction="column">
-                <Typography color="primary" component="p" variant="h3">
-                    <h1 style={{ margin: "auto", textAlign: "center", padding: "5%", paddingTop: "3%", paddingBottom: "9%" }}>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></h1>
+                <Typography color="primary" component="p" variant="h3" className={classes.h3} style={{ margin: "auto", textAlign: "center", padding: "5%", paddingTop: "3%", paddingBottom: "9%" }}>
+                    <h1>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></h1>
+                    {/*<img src={tecnotopia_black_v2} alt="tecnotopia_black_v2" width="246" height="78" />*/}
                 </Typography>
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             ¿Cómo surge y qué pretende el proyecto?
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -89,7 +112,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Objetivos
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -109,7 +132,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Metas
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -123,7 +146,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Cronograma de ejecución
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -175,7 +198,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Población beneficiaria
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -188,7 +211,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Localización geográfica
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -199,7 +222,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Promoción y difusión de las actividades
                         </Typography>
                         <Typography component="p" variant="subtitle1">
@@ -223,7 +246,7 @@ function Home(props) {
 
                 <Paper className={fixedHeightPaper}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3">
+                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Presupuesto
                         </Typography>
                         <Typography component="p" variant="subtitle1">
