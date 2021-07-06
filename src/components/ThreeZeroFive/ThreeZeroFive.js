@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import ChapterHOC from '../../libs/ChapterHOC';
+import ChapterHOC from '../../libs/ChapterHOC/ChapterHOC';
 
 const useStyles = makeStyles((theme) => ({
   root: {

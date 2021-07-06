@@ -5,20 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
-import IconButton from '@material-ui/core/IconButton';
-import LanguageIcon from '@material-ui/icons/Language';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import InfoIcon from '@material-ui/icons/Info';
-import HomeIcon from '@material-ui/icons/Home';
-import Brightness6Icon from '@material-ui/icons/Brightness6';
-import FormatPaintIcon from '@material-ui/icons/FormatPaint';
 
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
@@ -36,22 +26,41 @@ import Container from '@material-ui/core/Container';
 import { flags } from './flags'
 
 import Home from '../src/components/home/Home'
-import Dashbord from '../src/components/dashboard/Dashboard'
 import About from '../src/components/about/About'
 import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
 import ThreeZeroFive from '../src/components/ThreeZeroFive/ThreeZeroFive'
-
+import Cards from '../src/components/cards/cards'
+import Characters from '../src/components/characters/characters'
 import {
   BrowserRouter as Router,
   Switch,
-  Link, 
+  Link,
   Route
 } from 'react-router-dom';
 
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/GlobalStyle";
 import { lightTheme, darkTheme } from "./components/Themes"
-import  {useDarkMode} from "./components/useDarkMode"
+import { useDarkMode } from "./components/useDarkMode"
+
+
+/**
+ * icons
+ */
+import LanguageIcon from '@material-ui/icons/Language';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import IconButton from '@material-ui/core/IconButton';
+import RecentActorsIcon from '@material-ui/icons/RecentActors';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import InfoIcon from '@material-ui/icons/Info';
+import HomeIcon from '@material-ui/icons/Home';
+import Brightness6Icon from '@material-ui/icons/Brightness6';
+import FormatPaintIcon from '@material-ui/icons/FormatPaint';
+
+import tecnotopia_black from './assets/tecnotopia_black.png'
+import tecnotopia_white from './assets/tecnotopia_white.png'
+import tecnotopia_black_v2 from './assets/tecnotopia_black_v2.png'
 
 
 const drawerWidth = 240;
@@ -137,12 +146,12 @@ const useStyles = makeStyles((theme) => ({
 
 //array for menu
 let menu = [
-  /*{
-    icon: <DashboardIcon />,
-    text: 'drawer.dashboard',
+  {
+    icon: <HomeIcon />,
+    text: 'drawer.home',
     route: '/'
   },
-  {
+  /*{
     icon: <InfoIcon />,
     text: 'drawer.about',
     route: '/about'
@@ -156,6 +165,11 @@ let menu = [
     icon: <FormatPaintIcon />,
     text: 'drawer.threezerofive',
     route: '/threezerofive'
+  },
+  {
+    icon: <RecentActorsIcon />,
+    text: 'drawer.cards',
+    route: '/cards'
   }
 ]
 
@@ -165,7 +179,7 @@ function App() {
   const { t, i18n } = useTranslation('common');
 
   const classes = useStyles();
-  const [openDrawer, setopenDrawer] = React.useState(true);
+  const [openDrawer, setopenDrawer] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setopenDrawer(true);
@@ -240,7 +254,7 @@ function App() {
                   <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  {t('title')}
+                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{paddingTop: "10px"}} />
                 </Typography>
                 <IconButton color="inherit" onClick={themeToggler}>
                   <Badge color="secondary" >
@@ -295,8 +309,12 @@ function App() {
                   {/*<Route path="/about" component={About} />*/}
 
                   {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
-                  
+
                   <Route path="/threezerofive" component={ThreeZeroFive} />
+
+                  <Route path="/cards" component={Cards} />
+                  
+                  <Route path="/characters" component={Characters} />
 
                   <Route render={() => <Home />} />
                 </Switch>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import WarningIcon from '@material-ui/icons/Warning';
 import axios from 'axios';
-import Loading from './loading/loading'
+import Loading from '../loading/loading'
 
 export const ChapterHOC = (WrappedText) => {
 
