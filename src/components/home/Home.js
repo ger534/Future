@@ -91,7 +91,7 @@ function Home(props) {
 
 
             <Grid container spacing={3} direction="column">
-                <Typography color="primary" component="p" variant="h3" className={classes.h3} style={{ margin: "auto", textAlign: "center", padding: "5%", paddingTop: "3%", paddingBottom: "9%" }}>
+                <Typography color="primary" component="p" variant="h3" className={classes.h3} style={{ textAlign: "center" }}>
                     <h1>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></h1>
                     {/*<img src={tecnotopia_black_v2} alt="tecnotopia_black_v2" width="246" height="78" />*/}
                 </Typography>
