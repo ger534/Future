@@ -14,8 +14,8 @@ export const ChapterHOC = (WrappedText) => {
         }
 
         useEffect(() => {
-          axios("http://localhost:3001/future/threezerofive", {
-            //axios("https://gabo534-api.herokuapp.com/future/threezerofive", {
+          //axios("http://localhost:3001/future/threezerofive", {
+          axios("https://gabo534-api.herokuapp.com/future/threezerofive", {
               method: 'POST',
               headers: {
                 'content-type': 'application/json'
