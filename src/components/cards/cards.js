@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 
 import CustomCard from '../../libs/customCard/customCard';
 
-import X035 from '../../assets/X035.png'
+//import X035 from '../../assets/X035.png'
 import Test from '../../assets/Test.png'
 let mainCards = [
     {

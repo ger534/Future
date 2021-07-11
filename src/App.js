@@ -19,17 +19,18 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import React, { useState, useEffect } from "react";
+import React, { } from "react";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import { flags } from './flags'
 
 import Home from '../src/components/home/Home'
-import About from '../src/components/about/About'
-import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
+//import About from '../src/components/about/About'
+//import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
 import ThreeZeroFive from '../src/components/ThreeZeroFive/ThreeZeroFive'
 import Cards from '../src/components/cards/cards'
+import Plots from '../src/components/plots/plots'
 import Characters from '../src/components/characters/characters'
 import {
   BrowserRouter as Router,
@@ -52,14 +53,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
 import RecentActorsIcon from '@material-ui/icons/RecentActors';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import InfoIcon from '@material-ui/icons/Info';
+//import DashboardIcon from '@material-ui/icons/Dashboard';
+//import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
 import Brightness6Icon from '@material-ui/icons/Brightness6';
 import FormatPaintIcon from '@material-ui/icons/FormatPaint';
+import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
 
-import tecnotopia_black from './assets/tecnotopia_black.png'
-import tecnotopia_white from './assets/tecnotopia_white.png'
 import tecnotopia_black_v2 from './assets/tecnotopia_black_v2.png'
 
 
@@ -170,6 +170,11 @@ let menu = [
     icon: <RecentActorsIcon />,
     text: 'drawer.cards',
     route: '/cards'
+  },
+  {
+    icon: <SportsKabaddiIcon />,
+    text: 'drawer.plots',
+    route: '/plots'
   }
 ]
 
@@ -254,7 +259,7 @@ function App() {
                   <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{paddingTop: "10px"}} />
+                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{paddingTop: "10px"}} alt="tecnotopia logo"/>
                 </Typography>
                 <IconButton color="inherit" onClick={themeToggler}>
                   <Badge color="secondary" >
@@ -313,6 +318,8 @@ function App() {
                   <Route path="/threezerofive" component={ThreeZeroFive} />
 
                   <Route path="/cards" component={Cards} />
+
+                  <Route path="/plots" component={Plots} />
                   
                   <Route path="/characters" component={Characters} />
 

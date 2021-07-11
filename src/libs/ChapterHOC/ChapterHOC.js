@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import WarningIcon from '@material-ui/icons/Warning';
 import axios from 'axios';
 import Loading from '../loading/loading'
@@ -15,7 +14,8 @@ export const ChapterHOC = (WrappedText) => {
         }
 
         useEffect(() => {
-            axios("https://gabo534-api.herokuapp.com/future/threezerofive", {
+          axios("http://localhost:3001/future/threezerofive", {
+            //axios("https://gabo534-api.herokuapp.com/future/threezerofive", {
               method: 'POST',
               headers: {
                 'content-type': 'application/json'

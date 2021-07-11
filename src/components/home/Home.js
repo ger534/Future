@@ -1,16 +1,17 @@
 import React from 'react';
-import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@material-ui/core'
+//import Carousel from 'react-material-ui-carousel'
+import { Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 
+/*
 import X035 from '../../assets/X035.png'
 import tecnotopia_white from '../../assets/tecnotopia_white.png'
 import tecnotopia_black from '../../assets/tecnotopia_black.png'
 import tecnotopia_black_v2 from '../../assets/tecnotopia_black_v2.png'
-
+*/
 
 /*const theme = createTheme();
 
@@ -63,7 +64,7 @@ function Home(props) {
     const classes = useStyles();
     const fixedHeightPaper = clsx(classes.paper);
 
-    var items = [
+    /*var items = [
         {
             name: "Futuro",
             img: <img src={X035} alt="X035" width="168" height="256" />,
@@ -79,7 +80,7 @@ function Home(props) {
             img: <img src={tecnotopia_black} alt="tecnotopia_black" width="246" height="78" />,
             description: "Stil testing"
         }
-    ]
+    ]*/
 
     return (
         <>
@@ -289,16 +290,13 @@ function Home(props) {
 }
 export default Home;
 
-function Item(props) {
+/*function Item(props) {
     return (
         <Paper>
             <h2>{props.item.name}</h2>
             <p>{props.item.description}</p>
             {props.item.img}
 
-            {/*<Button className="CheckButton">
-                Check it out!
-            </Button>*/}
         </Paper>
     )
-}
+}*/

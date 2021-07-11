@@ -3,9 +3,7 @@ const prodConfig = {
     days: "90",
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutFuture: "https://github.com/Future/EngineeringTest"
+    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
 }
 
 const preProdConfig = {
@@ -13,9 +11,7 @@ const preProdConfig = {
     days: "90",
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutFuture: "https://github.com/Future/EngineeringTest"
+    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
 }
 
 const qaConfig = {
@@ -23,9 +19,7 @@ const qaConfig = {
     days: "90",
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutFuture: "https://github.com/Future/EngineeringTest"
+    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
 }
 
 const devConfig = {
@@ -33,9 +27,7 @@ const devConfig = {
     days: "90",
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutFuture: "https://github.com/Future/EngineeringTest"
+    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
 }
 
 const localConfig = {
@@ -43,9 +35,7 @@ const localConfig = {
     days: "90",
     ags: "09162",
     api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview",
-    moreAboutFuture: "https://www.cliniserve.de/en/ueber-uns/",
-    moreAboutFuture: "https://github.com/Future/EngineeringTest"
+    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
 }
 
 export const flags = () => {

@@ -1,15 +1,15 @@
 import Typography from '@material-ui/core/Typography';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+//import { makeStyles } from '@material-ui/core/styles';
+//import Paper from '@material-ui/core/Paper';
+//import clsx from 'clsx';
 
 import ChapterHOC from '../../libs/ChapterHOC/ChapterHOC';
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
-const useStyles = makeStyles((theme) => ({
+/*const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
   },
@@ -33,20 +33,18 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
     width: "100%"
   },
-}));
+}));*/
 
 function ThreeZeroFive(props) {
 
-  const classes = useStyles();
+  //const classes = useStyles();
 
   //language
-  const { t } = useTranslation('common');
+  //const { t } = useTranslation('common');
 
-  //const [text, setText] = useState("");
+  const { text } = props;
 
-  const { text, setText } = props;
-
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   
 
@@ -55,19 +53,9 @@ function ThreeZeroFive(props) {
       <Typography color="primary" component="p" variant="h3">
         305, humano después de todo
       </Typography>
-      <div style={{ whiteSpace: "pre-wrap" }}>{text}</div>
-      {/*<Paper className={fixedHeightPaper}>
-        <Grid item md={12}>
-          <Typography color="primary" component="p" variant="h3">
-            305
-          </Typography>
-          <Typography component="p" variant="subtitle1">
-
-            <div style={{ whiteSpace: "pre-wrap" }}>{text}</div>
-
-          </Typography>
-        </Grid>
-      </Paper>*/}
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} children={text} />
+      {/*<div style={{ whiteSpace: "pre-wrap" }}>{text}</div>*/}
+      
 
     </Grid>
 

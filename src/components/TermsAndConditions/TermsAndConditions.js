@@ -5,11 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import { flags } from '../../flags'
-
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "../Themes"
-import  {useDarkMode} from "../useDarkMode"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,9 +38,6 @@ export default function TermsAndConditions() {
 
   //language
   const { t } = useTranslation('common');
-
-  const [theme, themeToggler] = useDarkMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   //console.log(TermsAndConditionsText)
