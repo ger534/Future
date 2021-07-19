@@ -1,57 +1,23 @@
 const prodConfig = {
-    api: "https://api.corona-zahlen.org",
-    days: "90",
-    ags: "09162",
-    api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
-}
-
-const preProdConfig = {
-    api: "https://api.corona-zahlen.org",
-    days: "90",
-    ags: "09162",
-    api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
-}
-
-const qaConfig = {
-    api: "https://api.corona-zahlen.org",
-    days: "90",
-    ags: "09162",
-    api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
+    api: "https://gabo534-api.herokuapp.com"
 }
 
 const devConfig = {
-    api: "https://api.corona-zahlen.org",
-    days: "90",
-    ags: "09162",
-    api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
+    api: "https://gabo534-api.herokuapp.com"
 }
 
 const localConfig = {
-    api: "https://api.corona-zahlen.org",
-    days: "90",
-    ags: "09162",
-    api_doc: "https://api.corona-zahlen.org/docs/",
-    moreAboutCovid: "https://www.deutschland.de/en/corona-virus-germany-overview"
+    api: "http://localhost:3001"
 }
 
 export const flags = () => {
 
-    const isQA = /qa/
-    const isDev = /dev/
-    const isPreProd = /preprod/
+    const isDev = /gabo534/
     const location = window.location.href
     const host = window.location.host
 
-    if (isPreProd.exec(location)) {
-        return preProdConfig
-    } else if (isDev.exec(location)) {
+    if (isDev.exec(location)) {
         return devConfig
-    } else if (isQA.exec(location)) {
-        return qaConfig
     } else if (host === 'localhost:3000') {
         return localConfig
     } else {

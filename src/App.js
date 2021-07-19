@@ -14,6 +14,7 @@ import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -107,17 +108,9 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     width: drawerWidth,
     overflow: "hidden",
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
   },
   drawerPaperClose: {
     overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
     width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
@@ -195,6 +188,8 @@ function App() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const matches = useMediaQuery('(min-width:600px)');
+
   const handleLanguageOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -213,7 +208,7 @@ function App() {
   const mainListItems = (
     <div>
       {menu.map((item) =>
-        <Link to={item.route} style={{ textDecoration: 'none', color: 'black' }} key={item.text}>
+        <Link to={item.route} style={{ textDecoration: 'none', color: 'black' }} key={item.text} >
           <ListItem button>
             <ListItemIcon>
               {item.icon}
@@ -259,7 +254,7 @@ function App() {
                   <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{paddingTop: "10px"}} alt="tecnotopia logo"/>
+                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{ paddingTop: "10px" }} alt="tecnotopia logo" />
                 </Typography>
                 <IconButton color="inherit" onClick={themeToggler}>
                   <Badge color="secondary" >
@@ -287,41 +282,57 @@ function App() {
               </Toolbar>
             </AppBar>
 
+            {matches ? 
+            /* tablet and desktop drawer */
             <Drawer
-              variant="permanent"
-              classes={{
-                paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
-              }}
-              open={openDrawer}
-            >
-              <div className={classes.toolbarIcon}>
-                <IconButton onClick={handleDrawerClose}>
-                  <ChevronLeftIcon />
-                </IconButton>
-              </div>
-              <Divider />
-              <List>{mainListItems}</List>
-            </Drawer>
-
+                variant="permanent"
+                classes={{
+                  paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
+                }}
+                open={openDrawer}
+              >
+                <div className={classes.toolbarIcon}>
+                  <IconButton onClick={handleDrawerClose}>
+                    <ChevronLeftIcon />
+                  </IconButton>
+                </div>
+                <Divider />
+                <List>{mainListItems}</List>
+              </Drawer> : 
+              /* phone drawer */
+              <Drawer
+                variant="temporary"
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                onClose={handleDrawerClose}
+                open={openDrawer}
+              >
+                <div className={classes.toolbarIcon}>
+                </div>
+                <Divider />
+                <List onClick={handleDrawerClose}>{mainListItems}</List>
+              </Drawer>}
+              
 
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
               <Container maxWidth="lg" className={classes.container}>
 
-                <Switch>
+                <Switch onClick={handleDrawerClose}>
                   {/*<Route path="/dashboard" component={Dashbord} />*/}
 
                   {/*<Route path="/about" component={About} />*/}
 
                   {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
 
-                  <Route path="/threezerofive" component={ThreeZeroFive} />
+                  <Route path="/threezerofive" component={ThreeZeroFive} onClose={handleDrawerClose} onClick={handleDrawerClose}  />
 
-                  <Route path="/cards" component={Cards} />
+                  <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
 
-                  <Route path="/plots" component={Plots} />
-                  
-                  <Route path="/characters" component={Characters} />
+                  <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
+
+                  <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
 
                   <Route render={() => <Home />} />
                 </Switch>
