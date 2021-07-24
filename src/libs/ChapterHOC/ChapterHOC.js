@@ -6,33 +6,40 @@ import Loading from '../loading/loading'
 import { flags } from '../../../src/flags'
 import FileSaver from 'file-saver';
 
-export const ChapterHOC = (WrappedText, file_name) => {
-
+export const ChapterHOC = (WrappedText) => {
   function HOC(props) {
     const [text, setText] = useState("")
+    const [route, setRoute] = useState("")
 
-    const setTextState = isText => {
+    /*const setTextState = isText => {
       setText(isText)
+    }*/
+
+    const setRouteState = isRoute => {
+      setRoute(isRoute)
     }
 
     useEffect(() => {
-      axios(`${flags().api}/future/threezerofive`, {
+      axios(`${flags().api}/future/chapter`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
         },
+        data: {
+          chapter: route
+        }
         //data: payload,
       }).then(response => {
         setText(response.data)
       }).catch(error => {
         setText("error")
       })
-    }, [])
+    }, [route])
 
     const [loading, setLoading] = React.useState(false)
-    const download = () => {
+    const download = (file_name) => {
       setLoading(true)
-      axios(`${flags().api}/future/threezerofive/download`, {
+      axios(`${flags().api}/future${route}/download`, {
         method: 'POST',
         responseType: 'arraybuffer',
         headers: {
@@ -53,9 +60,9 @@ export const ChapterHOC = (WrappedText, file_name) => {
     return (
       <>
         {text === "" && <Loading />}
-        {text !== "error" && text !== "" ? <WrappedText {...props} setText={setTextState} text={text} download={download} loading={loading} /> : null}
-        {text === "error" ?
-          <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div> : null}
+        {<WrappedText {...props} setRoute={setRouteState} text={text} download={download} loading={loading} />}
+        {text === "error" &&
+          <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>}
       </>
     )
   }

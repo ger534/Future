@@ -29,7 +29,7 @@ import { flags } from './flags'
 import Home from '../src/components/home/Home'
 //import About from '../src/components/about/About'
 //import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
-import ThreeZeroFive from '../src/components/ThreeZeroFive/ThreeZeroFive'
+import Chapter from './components/Chapter/Chapter'
 import Cards from '../src/components/cards/cards'
 import Plots from '../src/components/plots/plots'
 import Characters from '../src/components/characters/characters'
@@ -58,13 +58,14 @@ import RecentActorsIcon from '@material-ui/icons/RecentActors';
 //import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
 import Brightness6Icon from '@material-ui/icons/Brightness6';
-import FormatPaintIcon from '@material-ui/icons/FormatPaint';
+//import FormatPaintIcon from '@material-ui/icons/FormatPaint';
 import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 import tecnotopia_black_v2 from './assets/tecnotopia_black_v2.png'
 
 
-const drawerWidth = 240;
+const drawerWidth = 254;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -137,6 +138,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let chapters = [
+  { title: "Términos y condiciones", file_name: "terms_and_conditions", route: "/terms_and_conditions" },
+  { title: "Hola mundo", file_name: "hello_world", route: "/hello_world" },
+  { title: "Post mortem", file_name: "post_mortem", route: "/post_mortem" },
+  { title: "Disonancia cognitiva", file_name: "cognitive_dissonance", route: "/cognitive_dissonance" },
+  { title: "Histología", file_name: "histology", route: "/histology" },
+  { title: "Jaula de Faraday", file_name: "faraday_cage", route: "/faraday_cage" },
+  { title: "Folie à deux", file_name: "madness_for_two", route: "/madness_for_two" },
+  { title: "Ludópatas", file_name: "gamblers", route: "/gamblers" },
+  { title: "Ambivalencia", file_name: "ambivalence", route: "/ambivalence" },
+]
+
 //array for menu
 let menu = [
   {
@@ -155,11 +168,6 @@ let menu = [
     route: '/termsandconditions'
   },*/
   {
-    icon: <FormatPaintIcon />,
-    text: 'drawer.threezerofive',
-    route: '/threezerofive'
-  },
-  {
     icon: <RecentActorsIcon />,
     text: 'drawer.cards',
     route: '/cards'
@@ -168,7 +176,7 @@ let menu = [
     icon: <SportsKabaddiIcon />,
     text: 'drawer.plots',
     route: '/plots'
-  }
+  },
 ]
 
 function App() {
@@ -214,6 +222,17 @@ function App() {
               {item.icon}
             </ListItemIcon>
             <ListItemText primary={t(item.text)} />
+          </ListItem>
+        </Link>
+      )}
+      <Divider />
+      {chapters.map((chapter) =>
+        <Link to={chapter.route} style={{ textDecoration: 'none', color: 'black' }} key={chapter.title} >
+          <ListItem button>
+            <ListItemIcon>
+              <MenuBookIcon />
+            </ListItemIcon>
+            <ListItemText primary={chapter.title} />
           </ListItem>
         </Link>
       )}
@@ -282,9 +301,9 @@ function App() {
               </Toolbar>
             </AppBar>
 
-            {matches ? 
-            /* tablet and desktop drawer */
-            <Drawer
+            {matches ?
+              /* tablet and desktop drawer */
+              <Drawer
                 variant="permanent"
                 classes={{
                   paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
@@ -297,8 +316,8 @@ function App() {
                   </IconButton>
                 </div>
                 <Divider />
-                <List>{mainListItems}</List>
-              </Drawer> : 
+                <List  style={{overflowY: "auto", overflowX: "hidden"}}>{mainListItems}</List>
+              </Drawer> :
               /* phone drawer */
               <Drawer
                 variant="temporary"
@@ -307,13 +326,14 @@ function App() {
                 }}
                 onClose={handleDrawerClose}
                 open={openDrawer}
+                
               >
                 <div className={classes.toolbarIcon}>
                 </div>
                 <Divider />
-                <List onClick={handleDrawerClose}>{mainListItems}</List>
+                <List onClick={handleDrawerClose} style={{overflowY: "auto", overflowX: "hidden"}}>{mainListItems}</List>
               </Drawer>}
-              
+
 
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
@@ -326,13 +346,16 @@ function App() {
 
                   {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
 
-                  <Route path="/threezerofive" component={ThreeZeroFive} onClose={handleDrawerClose} onClick={handleDrawerClose}  />
+                  <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
+                  <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
+                  <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose}/>
+                  {/*<Route path="/threezerofive" render={() => <ThreeZeroFive title={"Hola mundo"} file_name={`hello_world`} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />*/}
+                  {chapters.map((chapter) => 
+                    <Route key={chapter.title} path={chapter.route} render={() => <Chapter title={chapter.title} file_name={chapter.file_name} route={chapter.route} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                  )}
 
                   <Route render={() => <Home />} />
                 </Switch>
