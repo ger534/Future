@@ -5,6 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
+
+/* intellectual property */
+import { ThemeContext, themes } from '../../context/theme-context';
+
+
 //import GoogleMapReact from 'google-map-react';
 
 /*
@@ -28,7 +33,7 @@ theme.typography.h3 = {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'block'
+        display: 'block',
     },
     title: {
         flexGrow: 1,
@@ -38,13 +43,16 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
     },
-    paper: {
+    paper: contextTheme => ({
         display: 'block',
         padding: theme.spacing(2),
         overflow: 'auto',
         flexDirection: 'column',
-        margin: "1%"
-    },
+        margin: "1%",
+        backgroundColor: contextTheme.background,
+        color: contextTheme.foreground,
+        transition: "all 0.50s linear"
+    }),
     fixedHeight: {
         height: 240,
         width: "100%"
@@ -71,7 +79,9 @@ function Home(props) {
     };*/
 
 
-    const classes = useStyles();
+    React.useContext(ThemeContext);
+    const [contextTheme, themeToggler] = React.useContext(ThemeContext);
+    const classes = useStyles(contextTheme);
     const fixedHeightPaper = clsx(classes.paper);
 
     /*var items = [
@@ -365,6 +375,7 @@ function Home(props) {
         </>
     )
 }
+
 export default Home;
 
 /*function Item(props) {

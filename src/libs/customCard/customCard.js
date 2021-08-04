@@ -23,7 +23,7 @@ function CustomCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea href={`/${props.route}`}>
         <CardMedia
           className={classes.media}
           image={props.image}
@@ -38,11 +38,11 @@ function CustomCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" href="/characters">
+      {/*<CardActions>
+        <Button size="small" color="primary" href={`/${props.route}`}>
           Leer más
         </Button>
-      </CardActions>
+      </CardActions>*/}
     </Card>
   );
 }

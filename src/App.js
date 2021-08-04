@@ -24,27 +24,15 @@ import React, { } from "react";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import { flags } from './flags'
 
-import Home from '../src/components/home/Home'
-//import About from '../src/components/about/About'
-//import TermsAndConditions from '../src/components/TermsAndConditions/TermsAndConditions'
-import Chapter from './components/Chapter/Chapter'
-import Cards from '../src/components/cards/cards'
-import Plots from '../src/components/plots/plots'
-import Characters from '../src/components/characters/characters'
+
+/* third party packages */
 import {
   BrowserRouter as Router,
   Switch,
   Link,
   Route
 } from 'react-router-dom';
-
-import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./components/GlobalStyle";
-import { lightTheme, darkTheme } from "./components/Themes"
-import { useDarkMode } from "./components/useDarkMode"
-
 
 /**
  * icons
@@ -64,12 +52,24 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 import tecnotopia_black_v2 from './assets/tecnotopia_black_v2.png'
 
+/* intellectual property */
+import Home from '../src/components/home/Home'
+import Chapter from './components/Chapter/Chapter'
+import Cards from '../src/components/cards/cards'
+import Plots from '../src/components/plots/plots'
+import Characters from '../src/components/characters/characters'
+import { flags } from './flags'
+import { ThemeContext, themes } from '../src/context/theme-context';
+
 
 const drawerWidth = 254;
-const useStyles = makeStyles((theme) => ({
-  root: {
+const useStyles = makeStyles(theme => ({
+  root: contextTheme => ({
     display: 'flex',
-  },
+    backgroundColor: contextTheme.background,
+    color: contextTheme.foreground,
+    transition: "all 0.50s linear"
+  }),
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -104,50 +104,56 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  drawerPaper: {
+  drawerPaper: contextTheme => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     overflow: "hidden",
-  },
-  drawerPaperClose: {
+    backgroundColor: contextTheme.background,
+    color: contextTheme.foreground,
+    transition: "all 0.50s linear"
+  }),
+  drawerPaperClose: contextTheme => ({
     overflowX: 'hidden',
     width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
-  },
+  }),
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto',
+    overflow: 'auto', //"mmmmmmmmmmmmm"
   },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  paper: {
+  paper: contextTheme => ({
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-  },
+    backgroundColor: contextTheme.background,
+    color: contextTheme.foreground,
+    transition: "all 0.50s linear"
+  }),
   fixedHeight: {
     height: 540,
   },
 }));
 
 let chapters = [
-  { title: "Términos y condiciones", file_name: "terms_and_conditions", route: "/terms_and_conditions" },
-  { title: "Hola mundo", file_name: "hello_world", route: "/hello_world" },
-  { title: "Post mortem", file_name: "post_mortem", route: "/post_mortem" },
-  { title: "Disonancia cognitiva", file_name: "cognitive_dissonance", route: "/cognitive_dissonance" },
-  { title: "Histología", file_name: "histology", route: "/histology" },
-  { title: "Jaula de Faraday", file_name: "faraday_cage", route: "/faraday_cage" },
-  { title: "Folie à deux", file_name: "madness_for_two", route: "/madness_for_two" },
-  { title: "Ludópatas", file_name: "gamblers", route: "/gamblers" },
-  { title: "Ambivalencia", file_name: "ambivalence", route: "/ambivalence" },
+  { title: "Términos y condiciones", file_name: "0-terms_and_conditions", route: "/0-terms_and_conditions", next: "/1-hello_world" },
+  { title: "Hola mundo", file_name: "1-hello_world", route: "/1-hello_world", next: "/2-post_mortem" },
+  { title: "Post mortem", file_name: "2-post_mortem", route: "/2-post_mortem", next: "/3-cognitive_dissonance" },
+  { title: "Disonancia cognitiva", file_name: "3-cognitive_dissonance", route: "/3-cognitive_dissonance", next: "/4-histology" },
+  { title: "Histología", file_name: "4-histology", route: "/4-histology", next: "/5-faraday_cage" },
+  { title: "Jaula de Faraday", file_name: "5-faraday_cage", route: "/5-faraday_cage", next: "/6-madness_for_two" },
+  { title: "Locura para dos", file_name: "6-madness_for_two", route: "/6-madness_for_two", next: "/7-gamblers" },
+  { title: "Ludópatas", file_name: "7-gamblers", route: "/7-gamblers", next: "/8-ambivalence" },
+  { title: "Ambivalencia", file_name: "8-ambivalence", route: "/8-ambivalence", next: "/" },
 ]
 
 //array for menu
@@ -161,11 +167,6 @@ let menu = [
     icon: <InfoIcon />,
     text: 'drawer.about',
     route: '/about'
-  },
-  {
-    icon: <HomeIcon />,
-    text: 'drawer.termsandconditions',
-    route: '/termsandconditions'
   },*/
   {
     icon: <RecentActorsIcon />,
@@ -184,7 +185,7 @@ function App() {
   //language
   const { t, i18n } = useTranslation('common');
 
-  const classes = useStyles();
+  
   const [openDrawer, setopenDrawer] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -209,9 +210,13 @@ function App() {
     setAnchorEl(null);
   };
 
-  const [theme, themeToggler] = useDarkMode();
+  const [contextTheme, themeToggler] = React.useState(themes.dark);
+  const classes = useStyles(contextTheme);
 
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const toggleTheme = () => {
+    themeToggler(contextTheme === themes.dark ? themes.light : themes.dark)
+  };
+
 
   const mainListItems = (
     <div>
@@ -251,125 +256,130 @@ function App() {
   }
 
   return (
+    <>
+      <ThemeContext.Provider value={[contextTheme, themeToggler]}>
+      {/*<ThemeProvider theme={themeMode}>*/}
+        <>
+          <div className={classes.root}>
+            <CssBaseline />
+            <Router>
 
-
-    <ThemeProvider theme={themeMode}>
-      <>
-        <GlobalStyles />
-        <div className={classes.root}>
-          <CssBaseline />
-          <Router>
-
-            <AppBar position="absolute" className={clsx(classes.appBar, openDrawer && classes.appBarShift)}>
-              <Toolbar className={classes.toolbar}>
-                <IconButton
-                  edge="start"
-                  color="inherit"
-                  aria-label="open drawer"
-                  aria-controls="language-menu"
-                  onClick={handleDrawerOpen}
-                  className={clsx(classes.menuButton, openDrawer && classes.menuButtonHidden)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                  {/*t('title')*/} <img src={tecnotopia_black_v2} width="100px" style={{ paddingTop: "10px" }} alt="tecnotopia logo" />
-                </Typography>
-                <IconButton color="inherit" onClick={themeToggler}>
-                  <Badge color="secondary" >
-                    <Brightness6Icon />
-                  </Badge>
-                </IconButton>
-                <IconButton color="inherit" onClick={handleLanguageOpen}>
-                  <Badge color="secondary" >
-                    <LanguageIcon />
-                  </Badge>
-                </IconButton>
-
-                <Menu
-                  id="language-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleLanguageClose}
-                >
-                  {i18n.languages.map((lan) =>
-                    <MenuItem key={lan} onClick={(event) => handleLanguageClose(lan, event)} >{lan}</MenuItem>
-                  )}
-                </Menu>
-
-              </Toolbar>
-            </AppBar>
-
-            {matches ?
-              /* tablet and desktop drawer */
-              <Drawer
-                variant="permanent"
-                classes={{
-                  paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
-                }}
-                open={openDrawer}
-              >
-                <div className={classes.toolbarIcon}>
-                  <IconButton onClick={handleDrawerClose}>
-                    <ChevronLeftIcon />
+              <AppBar position="absolute" className={clsx(classes.appBar, openDrawer && classes.appBarShift)}>
+                <Toolbar className={classes.toolbar}>
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    aria-controls="language-menu"
+                    onClick={handleDrawerOpen}
+                    className={clsx(classes.menuButton, openDrawer && classes.menuButtonHidden)}
+                  >
+                    <MenuIcon />
                   </IconButton>
-                </div>
-                <Divider />
-                <List  style={{overflowY: "auto", overflowX: "hidden"}}>{mainListItems}</List>
-              </Drawer> :
-              /* phone drawer */
-              <Drawer
-                variant="temporary"
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                onClose={handleDrawerClose}
-                open={openDrawer}
-                
-              >
-                <div className={classes.toolbarIcon}>
-                </div>
-                <Divider />
-                <List onClick={handleDrawerClose} style={{overflowY: "auto", overflowX: "hidden"}}>{mainListItems}</List>
-              </Drawer>}
+                  <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                    <IconButton color="inherit" href="/">
+                      <img src={tecnotopia_black_v2} width="100px" style={{ paddingTop: "10px" }} alt="tecnotopia logo" />
+                    </IconButton>
+                  </Typography>
+                  <IconButton color="inherit" onClick={toggleTheme}>
+                    <Badge color="secondary" >
+                      <Brightness6Icon />
+                    </Badge>
+                  </IconButton>
+                  <IconButton color="inherit" onClick={handleLanguageOpen}>
+                    <Badge color="secondary" >
+                      <LanguageIcon />
+                    </Badge>
+                  </IconButton>
+
+                  <Menu
+                    id="language-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleLanguageClose}
+                  >
+                    {i18n.languages.map((lan) =>
+                      <MenuItem key={lan} onClick={(event) => handleLanguageClose(lan, event)} >{lan}</MenuItem>
+                    )}
+                  </Menu>
+
+                </Toolbar>
+              </AppBar>
+
+              {matches ?
+                /* tablet and desktop drawer */
+                <Drawer
+                  variant="permanent"
+                  classes={{
+                    paper: clsx(classes.drawerPaper, !openDrawer && classes.drawerPaperClose),
+                  }}
+                  open={openDrawer}
+                >
+                  <div className={classes.toolbarIcon}>
+                    <IconButton onClick={handleDrawerClose}>
+                      <ChevronLeftIcon />
+                    </IconButton>
+                  </div>
+                  <Divider />
+                  <List style={{ overflowY: "auto", overflowX: "hidden" }}>{mainListItems}</List>
+                </Drawer> :
+                /* phone drawer */
+                <Drawer
+                  variant="temporary"
+                  classes={{
+                    paper: classes.drawerPaper,
+                  }}
+                  onClose={handleDrawerClose}
+                  open={openDrawer}
+
+                >
+                  <div className={classes.toolbarIcon}>
+                  </div>
+                  <Divider />
+                  <List onClick={handleDrawerClose} style={{ overflowY: "auto", overflowX: "hidden" }}>{mainListItems}</List>
+                </Drawer>}
 
 
-            <main className={classes.content}>
-              <div className={classes.appBarSpacer} />
-              <Container maxWidth="lg" className={classes.container}>
+              <main className={classes.content}>
+                <div className={classes.appBarSpacer} />
+                <Container maxWidth="lg" className={classes.container}>
 
-                <Switch onClick={handleDrawerClose}>
-                  {/*<Route path="/dashboard" component={Dashbord} />*/}
+                  <Switch onClick={handleDrawerClose}>
+                    {/*<Route path="/dashboard" component={Dashbord} />*/}
 
-                  {/*<Route path="/about" component={About} />*/}
+                    {/*<Route path="/about" component={About} />*/}
 
-                  {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
+                    {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
 
-                  <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                    <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                    <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                    <Route path="/Aniristuv" component={() => <Characters char="Aniristuv" />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  {/*<Route path="/threezerofive" render={() => <ThreeZeroFive title={"Hola mundo"} file_name={`hello_world`} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />*/}
-                  {chapters.map((chapter) => 
-                    <Route key={chapter.title} path={chapter.route} render={() => <Chapter title={chapter.title} file_name={chapter.file_name} route={chapter.route} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
-                  )}
+                    <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route render={() => <Home />} />
-                </Switch>
+                    {/*<Route path="/threezerofive" render={() => <ThreeZeroFive title={"Hola mundo"} file_name={`hello_world`} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />*/}
+                    {chapters.map((chapter) =>
+                      <Route key={chapter.title} path={chapter.route} render={() => <Chapter title={chapter.title} file_name={chapter.file_name} route={chapter.route} next={chapter.next} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                    )}
 
-                <Box pt={4}>
-                  <Footer />
-                </Box>
-              </Container>
-            </main>
+                    <Route render={() => <Home />} />
+                  </Switch>
 
-          </Router>
-        </div >
-      </>
-    </ThemeProvider>
+                  <Box pt={4}>
+                    <Footer />
+                  </Box>
+                </Container>
+              </main>
+
+            </Router>
+          </div >
+        </>
+      {/*</ThemeProvider>*/}
+      </ThemeContext.Provider>
+    </>
   );
 }
 

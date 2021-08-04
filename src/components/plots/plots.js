@@ -35,7 +35,7 @@ let rows = [
     { chapter: "Disonancia cognitiva", plot: "Religión (?)", knowledge: "???" },
     { chapter: "Histología", plot: "Experimentación humana, evolución forzada o dirigida", knowledge: "???" },
     { chapter: "Jaula de Faraday", plot: "Deporte, e-sports", knowledge: "???" },
-    { chapter: "Folie à deux", plot: "fecundación", knowledge: "???" },
+    { chapter: "Locura para dos", plot: "fecundación", knowledge: "???" },
     { chapter: "Ludópatas", plot: "Moneda, finanzas, criptología", knowledge: "???" },
     { chapter: "Ambivalencia", plot: "La inevitable incertidumbre de existir en el multiverso virtual ", knowledge: "???" },
 ];

@@ -1,51 +1,144 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 /* material ui */
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import IconButton from '@material-ui/core/IconButton';
+import WarningIcon from '@material-ui/icons/Warning';
+import Button from '@material-ui/core/Button';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 /* third party packages */
+import axios from 'axios';
+import FileSaver from 'file-saver';
 //import rehypeRaw from 'rehype-raw'
 //import ReactMarkdown from 'react-markdown'
 
 /* intellectual property */
-import ChapterHOC from '../../libs/ChapterHOC/ChapterHOC';
-import Loading from '../../libs/loading/loading'
+import LoadingHOC from '../../libs/loading/LoadingHOC';
+import { flags } from '../../flags'
 
 function Chapter(props) {
-  const { text, download, loading, setRoute } = props;
 
+  const [text, setText] = useState("")
+
+  const { loading, setLoading } = props;
+
+  //dialog
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  //get chapter
   useEffect(() => {
-    setRoute(props.file_name)
-  }, [props.file_name, setRoute])
+    setLoading(true)
+    axios(`${flags().api}/future/chapter`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: {
+        chapter: props.route
+      }
+      //data: payload,
+    }).then(response => {
+      setText(response.data)
+      setLoading(false)
+    }).catch(error => {
+      setText("error")
+      setLoading(false)
+    })
+  }, [props.route])
+
+  //download chapter
+  const download = (file_name) => {
+    setLoading(true)
+    axios(`${flags().api}/future/download`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: {
+        chapter: file_name
+      },
+      responseType: 'arraybuffer',
+    }).then(response => {
+      FileSaver.saveAs(
+        new Blob([response.data], { type: 'application/pdf' }),
+        `${file_name}.pdf`
+      );
+      setLoading(false)
+      handleClose()
+    }).catch(error => {
+      alert("error while downloading")
+      setLoading(false)
+      handleClose()
+    })
+  }
+
+  //send user to next chapter
+  const nextChapter = () => {
+    console.log(props.next)
+    window.location.href = `${props.next}`
+  }
 
   return (
     <>
-      {loading && <Loading />}
-      {text !== "error" && <><Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
-        {props.title}
-        <IconButton
-          color="primary"
-          aria-label="download"
-          component="span"
-          onClick={() => download(props.file_name)}
-          size="medium"
-          disabled={loading}>
-          <GetAppIcon />
-        </IconButton>
-      </Typography>
-        {/*<Button variant="contained" color="primary" onClick={download}>
-          Descargar pdf
-  </Button>*/}
+      {text !== "error" && !loading && <>
+        <Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
+          {props.title}
+          <IconButton color="primary" aria-label="download" component="span" onClick={handleClickOpen} size="medium" disabled={loading}>
+            <GetAppIcon />
+          </IconButton>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Descarga"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                ¿Desea descargar la novela completa o solo este capítulo?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => download("tecnotopia")} color="primary">
+                Novela completa
+              </Button>
+              <Button onClick={() => download(props.file_name)} color="primary" autoFocus>
+                Este capítulo
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Typography>
+
         <Grid container spacing={3}>
           {/*<ReactMarkdown rehypePlugins={[rehypeRaw]} children={text} />*/}
           <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: text }} />
           {/*<div style={{ whiteSpace: "pre-wrap" }}>{text}</div>*/}
-        </Grid></>}
+        </Grid>
+        <Button variant="contained" color="primary" onClick={nextChapter} style={{ float: "right" }}>
+          Siguiente capítulo
+        </Button>
+      </>}
+
+      {text === "error" && <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>}
+
+
     </>
   );
 }
 
-export default ChapterHOC(Chapter);
+export default LoadingHOC(Chapter);
