@@ -23,6 +23,7 @@ import FileSaver from 'file-saver';
 /* intellectual property */
 import LoadingHOC from '../../libs/loading/LoadingHOC';
 import { flags } from '../../flags'
+import { Container } from '@material-ui/core';
 
 function Chapter(props) {
 
@@ -51,7 +52,6 @@ function Chapter(props) {
       data: {
         chapter: props.route
       }
-      //data: payload,
     }).then(response => {
       setText(response.data)
       setLoading(false)
@@ -59,7 +59,7 @@ function Chapter(props) {
       setText("error")
       setLoading(false)
     })
-  }, [props.route])
+  }, [props.route, setLoading])
 
   //download chapter
   const download = (file_name) => {
@@ -95,6 +95,7 @@ function Chapter(props) {
 
   return (
     <>
+    <Container maxWidth="lg">
       {text !== "error" && !loading && <>
         <Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
           {props.title}
@@ -136,7 +137,7 @@ function Chapter(props) {
 
       {text === "error" && <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>}
 
-
+      </Container>
     </>
   );
 }

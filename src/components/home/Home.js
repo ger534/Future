@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 
 /* intellectual property */
-import { ThemeContext, themes } from '../../context/theme-context';
+import { ThemeContext } from '../../contexts/theme-context';
 
 
 //import GoogleMapReact from 'google-map-react';
@@ -79,8 +79,7 @@ function Home(props) {
     };*/
 
 
-    React.useContext(ThemeContext);
-    const [contextTheme, themeToggler] = React.useContext(ThemeContext);
+    const [contextTheme] = React.useContext(ThemeContext);
     const classes = useStyles(contextTheme);
     const fixedHeightPaper = clsx(classes.paper);
 

@@ -59,7 +59,11 @@ import Cards from '../src/components/cards/cards'
 import Plots from '../src/components/plots/plots'
 import Characters from '../src/components/characters/characters'
 import { flags } from './flags'
-import { ThemeContext, themes } from '../src/context/theme-context';
+import { ThemeContext, themes } from './contexts/theme-context';
+import Test from './assets/Test2.png'
+import Aniristuv from './assets/Aniristuv.png'
+import OCT from './assets/803.png'
+import Irvus from './assets/503.png'
 
 
 const drawerWidth = 254;
@@ -180,6 +184,36 @@ let menu = [
   },
 ]
 
+//characters array
+let mainCards = [
+  {
+      title: "Aniristuv", 
+      //text: "El supervisor",
+      image: Aniristuv,
+  },
+  {
+      title: "503",
+      //text: "El antagonista",
+      image: Irvus,
+  },
+  {
+      title: "803",
+      //text: "El antagonista",
+      image: OCT,
+  },
+  {
+      title: "Letenci Alestopor", 
+      //text: "El soporte",
+      image: Test,
+  },
+  {
+      title: "Masram Zitesti", 
+      //text: "La máquina",
+      image: Test,
+  }
+]
+
+
 function App() {
 
   //language
@@ -258,7 +292,6 @@ function App() {
   return (
     <>
       <ThemeContext.Provider value={[contextTheme, themeToggler]}>
-      {/*<ThemeProvider theme={themeMode}>*/}
         <>
           <div className={classes.root}>
             <CssBaseline />
@@ -343,24 +376,21 @@ function App() {
 
               <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
-                <Container maxWidth="lg" className={classes.container}>
+                <Container /*maxWidth="lg"*/ maxWidth={false} className={classes.container}>
 
                   <Switch onClick={handleDrawerClose}>
                     {/*<Route path="/dashboard" component={Dashbord} />*/}
-
                     {/*<Route path="/about" component={About} />*/}
-
                     {/*<Route path="/termsandconditions" component={TermsAndConditions} />*/}
 
-                    <Route path="/cards" component={Cards} onClose={handleDrawerClose} onClick={handleDrawerClose} />
-
+                    <Route path="/cards" component={() => <Cards mainCards={mainCards}/>} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                     <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                    <Route path="/Aniristuv" component={() => <Characters char="Aniristuv" />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
-
-                    <Route path="/characters" component={Characters} onClose={handleDrawerClose} onClick={handleDrawerClose} />
-
-                    {/*<Route path="/threezerofive" render={() => <ThreeZeroFive title={"Hola mundo"} file_name={`hello_world`} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />*/}
+                    {/*characters paths*/}
+                    {mainCards.map((character) =>
+                      <Route path={`/${character.title}`} key={character.title} render={() => <Characters char={character.title} image={character.image} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                    )}
+                    {/*chapters paths*/}
                     {chapters.map((chapter) =>
                       <Route key={chapter.title} path={chapter.route} render={() => <Chapter title={chapter.title} file_name={chapter.file_name} route={chapter.route} next={chapter.next} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                     )}
@@ -377,7 +407,6 @@ function App() {
             </Router>
           </div >
         </>
-      {/*</ThemeProvider>*/}
       </ThemeContext.Provider>
     </>
   );

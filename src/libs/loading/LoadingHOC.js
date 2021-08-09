@@ -6,14 +6,10 @@ export const LoadingHOC = (WrappedText) => {
   function HOC(props) {
     const [loading, setLoading] = React.useState(false)
 
-    const setLoadingState = isLoading => {
-      setLoading(isLoading)
-    }
-
     return (
       <>
         {loading && <Loading />}
-        {<WrappedText {...props} setLoading={setLoadingState} loading={loading} />}
+        {<WrappedText {...props} setLoading={setLoading} loading={loading} />}
         {/*text === "error" &&
           <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>*/}
       </>

@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { ThemeContext } from '../../contexts/theme-context';
 
 const useStyles = makeStyles({
-  root: {
+  root: contextTheme => ({
     maxWidth: 445,
-  },
+    backgroundColor: contextTheme.background,
+    color: contextTheme.foreground,
+    transition: "all 0.50s linear"
+  }),
   media: {
     height: 300,
-    width: 300,
+    width: 280,
   },
 });
 
 function CustomCard(props) {
-  const classes = useStyles();
+  const [contextTheme] = React.useContext(ThemeContext);
+  const classes = useStyles(contextTheme);
+
+  const cardClick = () => {
+    //window.location = `/${props.route}`
+    //window.location.href = `/${props.route}`
+  }
 
   return (
     <Card className={classes.root}>
-      <CardActionArea href={`/${props.route}`}>
+      <CardActionArea onClick={cardClick} /**/href={`/${props.route}`}>
         <CardMedia
           className={classes.media}
           image={props.image}

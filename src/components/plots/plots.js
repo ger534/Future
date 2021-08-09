@@ -9,8 +9,20 @@ import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+
+import { ThemeContext } from '../../contexts/theme-context';
+
+const useStyles = makeStyles({
+    table: contextTheme => ({
+        backgroundColor: contextTheme.background,
+        color: contextTheme.foreground,
+        transition: "all 0.50s linear",
+        borderColor: contextTheme.foreground,
+        borderStyle: contextTheme.background === '#363537' ? "solid" : null,
+    }),
+});
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -21,6 +33,17 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: contextTheme => ({
+        backgroundColor: contextTheme.background,
+        color: contextTheme.foreground,
+        transition: "all 0.50s linear",
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    }),
+}))(TableRow);
 
 let cols = [
     { title: "Título del capítulo" },
@@ -42,11 +65,12 @@ let rows = [
 
 
 function Plots(props) {
+    const [contextTheme] = React.useContext(ThemeContext);
+    const classes = useStyles(contextTheme);
 
     //table
     const [page, setPage] = React.useState(0);
     const [rowsPerPage] = React.useState(10);
-
 
     const onPageChange = (event, newPage) => {
         setPage(newPage);
@@ -59,7 +83,7 @@ function Plots(props) {
             </Typography>
             <Box>
                 <TableContainer component={Paper}>
-                    <Table size="small">
+                    <Table size="small" className={classes.table}>
                         <TableHead>
                             <TableRow>
                                 {cols.map((col) =>
@@ -69,11 +93,11 @@ function Plots(props) {
                         </TableHead>
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                                <TableRow key={row.chapter}>
+                                <StyledTableRow key={row.chapter}>
                                     <TableCell>{row.chapter}</TableCell>
                                     <TableCell>{row.plot}</TableCell>
                                     <TableCell>{row.knowledge}</TableCell>
-                                </TableRow>
+                                </StyledTableRow>
                             ))}
                         </TableBody>
                     </Table>
