@@ -25,6 +25,12 @@ import LoadingHOC from '../../libs/loading/LoadingHOC';
 import { flags } from '../../flags'
 import { Container } from '@material-ui/core';
 
+
+//routing
+import { withRouter } from 'react-router-dom';
+
+import './chapter.css'
+
 function Chapter(props) {
 
   const [text, setText] = useState("")
@@ -89,8 +95,8 @@ function Chapter(props) {
 
   //send user to next chapter
   const nextChapter = () => {
-    console.log(props.next)
-    window.location.href = `${props.next}`
+    props.history.push(`${props.next}`)
+
   }
 
   return (
@@ -142,4 +148,5 @@ function Chapter(props) {
   );
 }
 
-export default LoadingHOC(Chapter);
+//export default LoadingHOC(Chapter);
+export default withRouter(LoadingHOC(Chapter));

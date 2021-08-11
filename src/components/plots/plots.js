@@ -17,10 +17,12 @@ import { ThemeContext } from '../../contexts/theme-context';
 const useStyles = makeStyles({
     table: contextTheme => ({
         backgroundColor: contextTheme.background,
-        color: contextTheme.foreground,
         transition: "all 0.50s linear",
         borderColor: contextTheme.foreground,
         borderStyle: contextTheme.background === '#363537' ? "solid" : null,
+        '& .MuiTableCell-root': {
+            color: contextTheme.foreground,
+        },
     }),
 });
 
@@ -28,21 +30,19 @@ const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: "#3f51b5",
         color: theme.palette.common.white,
+        fontSize: 24,
     },
     body: {
-        fontSize: 14,
+        fontSize: 20,
     },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
-    root: contextTheme => ({
-        backgroundColor: contextTheme.background,
-        color: contextTheme.foreground,
-        transition: "all 0.50s linear",
+    root: {
         '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
         },
-    }),
+    },
 }))(TableRow);
 
 let cols = [
@@ -94,9 +94,9 @@ function Plots(props) {
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                                 <StyledTableRow key={row.chapter}>
-                                    <TableCell>{row.chapter}</TableCell>
-                                    <TableCell>{row.plot}</TableCell>
-                                    <TableCell>{row.knowledge}</TableCell>
+                                    <StyledTableCell>{row.chapter}</StyledTableCell>
+                                    <StyledTableCell>{row.plot}</StyledTableCell>
+                                    <StyledTableCell>{row.knowledge}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                         </TableBody>

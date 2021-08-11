@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar'
 
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import { Container } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 
@@ -19,16 +18,28 @@ const useStyles = makeStyles((theme) => ({
         "& > *": {
             margin: theme.spacing(1)
         },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: contextTheme.foreground + ' !important',
-                transition: "all 0.50s linear",
-            },
-        },
-        '& .MuiInputBase-input': {
+        "& span": {
+            display: "block",
             color: contextTheme.foreground,
+            //backgroundColor: contextTheme.background,
+            resize: "none",
+            overflow: "hidden",
+            fontSize: "1rem",
+            fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+            height: "-webkit-fill-available",
+            width: "fill-available",
             transition: "all 0.50s linear",
-        }
+            padding: "18.5px 14px",
+            border: "1px solid " + contextTheme.foreground + ' !important',
+            borderRadius: "4px",
+
+            /*box-sizing: border-box;
+            align-items: center;
+            font-weight: 400;
+            line-height: 1.1876em;
+            letter-spacing: 0.00938em;*/
+        },
+
     })
 }));
 
@@ -68,131 +79,44 @@ function Characters(props) {
 
                             {/* using Steven characters template */}
                             <h2>Ficha fisiológica</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.physiologicalRecord}
-                            />
+                            <span>{character.physiologicalRecord}</span>
+
                             <h2>Ficha psicológica</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.psychologicalRecord}
-                            />
+                            <span>{character.psychologicalRecord}</span>
+
                             <h2>Ficha sociológica</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.sociologicalRecord}
-                            />
+                            <span>{character.sociologicalRecord}</span>
+
                             <h2>¿Cómo habla?</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.HowItTalks}
-                            />
+                            <span>{character.HowItTalks}</span>
+
                             <h2>Muletillas</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.catchphrase}
-                            />
+                            <span>{character.catchphrase}</span>
                         </Grid>
                         <Grid item xs={12} md={6} ls={6}>
                             <h2>Manias</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.manias}
-                            />
+                            <span>{character.manias}</span>
+
                             <h2>Motivaciones</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.motivations}
-                            />
+                            <span>{character.motivations}</span>
+
                             <h2>Moral</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.moral}
-                            />
+                            <span>{character.moral}</span>
+
                             <h1 style={{ textAlign: "center" }}>Epojé, suspensión del juicio</h1>
+
                             <h2>Palabras clave</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.suspensionOfJudgment.keywords}
-                            />
+                            <span>{character.suspensionOfJudgment.keywords}</span>
+
                             <h2>Definición personal</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                value={character.suspensionOfJudgment.meaning}
-                            />
+                            <span>{character.suspensionOfJudgment.meaning}</span>
+
                             <h2>Causas</h2>
-                            <TextField
-                                id="outlined-secondary"
-                                //label="Outlined secondary"
-                                variant="outlined"
-                                color="secondary"
-                                disabled={true}
-                                multiline
-                                style={{ fontStyle: "italic", width: "100%" }}
-                                value={character.suspensionOfJudgment.why}
-                            />
+                            <span>{character.suspensionOfJudgment.why}</span>
+
                             {character.suspensionOfJudgment.meaning_self && <>
                                 <h2>Comentario</h2>
-                                <TextField
-                                    id="outlined-secondary"
-                                    //label="Outlined secondary"
-                                    variant="outlined"
-                                    color="secondary"
-                                    disabled={true}
-                                    multiline
-                                    style={{ fontStyle: "italic", width: "100%" }}
-                                    value={character.suspensionOfJudgment.meaning_self}
-                                />
+                                <span>{character.suspensionOfJudgment.meaning_self}</span>
                             </>
                             }
                         </Grid>
@@ -210,7 +134,7 @@ export default LoadingHOC(Characters);
                 <h2>Descripción</h2>
                 <TextField
                     id="outlined-secondary"
-                    //label="Outlined secondary"
+                    fullWidth
                     variant="outlined"
                     color="secondary"
                     disabled={true}
@@ -220,7 +144,7 @@ export default LoadingHOC(Characters);
                 <h2>Psicología</h2>
                 <TextField
                     id="outlined-secondary"
-                    //label="Outlined secondary"
+                    fullWidth
                     variant="outlined"
                     color="secondary"
                     disabled={true}
@@ -232,7 +156,7 @@ export default LoadingHOC(Characters);
                 <p></p>
                 <TextField
                     id="outlined-secondary"
-                    //label="Outlined secondary"
+                    fullWidth
                     variant="outlined"
                     color="secondary"
                     disabled={false}

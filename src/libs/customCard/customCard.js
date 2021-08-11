@@ -9,6 +9,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { ThemeContext } from '../../contexts/theme-context';
 
+//routing
+import { withRouter } from 'react-router-dom';
+
 const useStyles = makeStyles({
   root: contextTheme => ({
     maxWidth: 445,
@@ -27,13 +30,12 @@ function CustomCard(props) {
   const classes = useStyles(contextTheme);
 
   const cardClick = () => {
-    //window.location = `/${props.route}`
-    //window.location.href = `/${props.route}`
+    props.history.push(`/${props.route}`)
   }
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={cardClick} /**/href={`/${props.route}`}>
+      <CardActionArea onClick={cardClick}>
         <CardMedia
           className={classes.media}
           image={props.image}
@@ -57,4 +59,4 @@ function CustomCard(props) {
   );
 }
 
-export default CustomCard;
+export default withRouter(CustomCard);
