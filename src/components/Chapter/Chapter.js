@@ -29,9 +29,20 @@ import { Container } from '@material-ui/core';
 //routing
 import { withRouter } from 'react-router-dom';
 
+/* helpers */
+import app from '../../helpers/firebase/firebase'
+
 import './chapter.css'
 
+//firebase analytics
+import { getAnalytics, logEvent } from 'firebase/analytics';
+const analytics = getAnalytics(app);
+
 function Chapter(props) {
+
+  logEvent(analytics, 'chapter', { name: props.file_name});
+  logEvent(analytics, 'screen_view', { screen_name: props.file_name });
+  console.log("chapter ", props.file_name)
 
   const [text, setText] = useState("")
 
