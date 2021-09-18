@@ -101,47 +101,47 @@ function Chapter(props) {
 
   return (
     <>
-    <Container maxWidth="lg">
-      {text !== "error" && !loading && <>
-        <Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
-          {props.title}
-          <IconButton color="primary" aria-label="download" component="span" onClick={handleClickOpen} size="medium" disabled={loading}>
-            <GetAppIcon />
-          </IconButton>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">{"Descarga"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                ¿Desea descargar la novela completa o solo este capítulo?
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => download("tecnotopia")} color="primary">
-                Novela completa
-              </Button>
-              <Button onClick={() => download(props.file_name)} color="primary" autoFocus>
-                Este capítulo
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Typography>
+      <Container maxWidth="lg">
+        {text !== "error" && !loading && <>
+          <Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
+            {props.title}
+            <IconButton color="primary" aria-label="download" component="span" onClick={handleClickOpen} size="medium" disabled={loading}>
+              <GetAppIcon />
+            </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Descarga"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  ¿Desea descargar la novela completa o solo este capítulo?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => download("tecnotopia")} color="primary">
+                  Novela completa
+                </Button>
+                <Button onClick={() => download(props.file_name)} color="primary" autoFocus>
+                  Este capítulo
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Typography>
 
-        <Grid container spacing={3}>
-          {/*<ReactMarkdown rehypePlugins={[rehypeRaw]} children={text} />*/}
-          <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: text }} />
-          {/*<div style={{ whiteSpace: "pre-wrap" }}>{text}</div>*/}
-        </Grid>
-        <Button variant="contained" color="primary" onClick={nextChapter} style={{ float: "right" }}>
-          Siguiente capítulo
-        </Button>
-      </>}
+          <Grid container spacing={3}>
+            {/*<ReactMarkdown rehypePlugins={[rehypeRaw]} children={text} />*/}
+            <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: text }} />
+            {/*<div style={{ whiteSpace: "pre-wrap" }}>{text}</div>*/}
+          </Grid>
+          <Button variant="contained" color="primary" onClick={nextChapter} style={{ float: "right" }}>
+            Siguiente capítulo
+          </Button>
+        </>}
 
-      {text === "error" && <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>}
+        {text === "error" && <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>}
 
       </Container>
     </>

@@ -13,21 +13,26 @@ import { ThemeContext } from '../../contexts/theme-context';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
-  root: contextTheme => ({
-    maxWidth: 445,
-    backgroundColor: contextTheme.background,
-    color: contextTheme.foreground,
-    transition: "all 0.50s linear"
+  root: props => ({
+    visibility: props.ghost ? "hidden" : "",
+    width: 280,
+    transition: "all 0.50s linear",
+    backgroundColor: props.contextTheme.background,
+    color: props.contextTheme.foreground,
+    //margin: props.ghost ? 0 : "1em",  //better to avoid empty space at the end but breaks the alignment something
+    margin: "1em",
+    height: props.ghost ? 0 : "",
   }),
-  media: {
+  media: props => ({
     height: 300,
     width: 280,
-  },
+  }),
 });
 
 function CustomCard(props) {
   const [contextTheme] = React.useContext(ThemeContext);
-  const classes = useStyles(contextTheme);
+  const propsForStyling = { contextTheme: contextTheme, ghost: props.title === "" }
+  const classes = useStyles(propsForStyling);
 
   const cardClick = () => {
     props.history.push(`/${props.route}`)

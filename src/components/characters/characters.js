@@ -69,13 +69,15 @@ function Characters(props) {
 
     return (
         <>
-            <Container>
+            <Container maxWidth={false}>
 
                 {character.name ? <form className={classes.root} noValidate autoComplete="off">
-                    <Grid container spacing={6}>
-                        <Grid item xs={12} md={6} ls={6}>
-                            <Avatar alt="character" src={props.image} style={{ width: "200px", height: "200px" }}></Avatar>
-                            <h1>{character.name}</h1>
+                    <Grid container /*spacing={6}*/>
+                        <Grid item style={{ padding: "24px" }} xs={12} md={6} ls={6}>
+                            <div style={{ display: "flex", flexWrap: "wrap" }}>
+                                <Avatar alt="character" src={props.image} style={{ width: "200px", height: "200px" }}></Avatar>
+                                <h1>{character.name}</h1>
+                            </div>
 
                             {/* using Steven characters template */}
                             <h2>Ficha fisiológica</h2>
@@ -93,7 +95,7 @@ function Characters(props) {
                             <h2>Muletillas</h2>
                             <span>{character.catchphrase}</span>
                         </Grid>
-                        <Grid item xs={12} md={6} ls={6}>
+                        <Grid item style={{ padding: "24px" }} xs={12} md={6} ls={6}>
                             <h2>Manias</h2>
                             <span>{character.manias}</span>
 

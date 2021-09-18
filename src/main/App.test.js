@@ -1,7 +1,7 @@
 import App from './App';
 import { shallow,configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import i18n from './i18n';
+import i18n from '../i18n';
 
 configure({adapter: new Adapter()});
 describe('App', () => {
