@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
-import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from '../../helpers/themeContext/themeContext';
 
 const useStyles = makeStyles({
     table: contextTheme => ({
@@ -53,7 +53,7 @@ let cols = [
 
 let rows = [
     { chapter: "Términos y condiciones", plot: "Planteamiento del universo en el que se desarrolla la obra", knowledge: "???" },
-    { chapter: "Hola mundo", plot: "El viaje de 305 hacia la realidad. Introducción al antogonista", knowledge: "Ids, variables, ciclos ???" },
+    { chapter: "Hola mundo", plot: "El viaje de 305 hacia la realidad. Introducción al antagonista", knowledge: "Ids, variables, ciclos ???" },
     { chapter: "Post mortem", plot: "El viaje de 99 hacia la muerte. El antagonista vive y es más complejo de lo esperado", knowledge: "Algoritmos (de ordenamiento), códigos de colores RGB, HEX" },
     { chapter: "Disonancia cognitiva", plot: "Religión (?)", knowledge: "???" },
     { chapter: "Histología", plot: "Experimentación humana, evolución forzada o dirigida", knowledge: "???" },
@@ -69,8 +69,8 @@ function Plots(props) {
     const classes = useStyles(contextTheme);
 
     //table
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage] = useState(10);
 
     const onPageChange = (event, newPage) => {
         setPage(newPage);

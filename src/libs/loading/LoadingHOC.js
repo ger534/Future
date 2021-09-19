@@ -1,10 +1,10 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
 
 import Loading from './loading'
 
 export const LoadingHOC = (WrappedText) => {
   function HOC(props) {
-    const [loading, setLoading] = React.useState(false)
+    const [loading, setLoading] = useState(false)
 
     return (
       <>

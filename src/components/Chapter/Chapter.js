@@ -15,19 +15,19 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 /* third party packages */
-import axios from 'axios';
 import FileSaver from 'file-saver';
 //import rehypeRaw from 'rehype-raw'
 //import ReactMarkdown from 'react-markdown'
 
 /* intellectual property */
 import LoadingHOC from '../../libs/loading/LoadingHOC';
-import { flags } from '../../flags'
 import { Container } from '@material-ui/core';
-
 
 //routing
 import { withRouter } from 'react-router-dom';
+
+/* helpers */
+import chapterService from '../../services/chapter.service'
 
 /* helpers */
 import app from '../../helpers/firebase/firebase'
@@ -49,7 +49,7 @@ function Chapter(props) {
   const { loading, setLoading } = props;
 
   //dialog
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -61,16 +61,8 @@ function Chapter(props) {
   //get chapter
   useEffect(() => {
     setLoading(true)
-    axios(`${flags().api}/future/chapter`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      data: {
-        chapter: props.route
-      }
-    }).then(response => {
-      setText(response.data)
+    chapterService.getChapter(props.route).then(response => {
+      setText(response)
       setLoading(false)
     }).catch(error => {
       setText("error")
@@ -81,18 +73,9 @@ function Chapter(props) {
   //download chapter
   const download = (file_name) => {
     setLoading(true)
-    axios(`${flags().api}/future/download`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      data: {
-        chapter: file_name
-      },
-      responseType: 'arraybuffer',
-    }).then(response => {
+    chapterService.downloadChapter(file_name).then(response => {
       FileSaver.saveAs(
-        new Blob([response.data], { type: 'application/pdf' }),
+        new Blob([response], { type: 'application/pdf' }),
         `${file_name}.pdf`
       );
       setLoading(false)

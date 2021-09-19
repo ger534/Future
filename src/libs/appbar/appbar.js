@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness6Icon from '@material-ui/icons/Brightness6';
 
-import tecnotopia_black_v2 from '../assets/tecnotopia_black_v2.png'
+import tecnotopia_black_v2 from '../../assets/tecnotopia_black_v2.png'
 
 import { useTranslation } from 'react-i18next';
 

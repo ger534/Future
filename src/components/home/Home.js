@@ -7,30 +7,9 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 
 /* intellectual property */
-import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from '../../helpers/themeContext/themeContext';
 import cronogram from '../../assets/activities0.PNG'
 import promotion from '../../assets/activities.PNG'
-
-//import GoogleMapReact from 'google-map-react';
-
-/*
-import X035 from '../../assets/X035.png'
-import tecnotopia_white from '../../assets/tecnotopia_white.png'
-import tecnotopia_black from '../../assets/tecnotopia_black.png'
-import tecnotopia_black_v2 from '../../assets/tecnotopia_black_v2.png'
-*/
-
-/*const theme = createTheme();
-
-theme.typography.h3 = {
-  fontSize: '1.2rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.5rem',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.4rem',
-  },
-};*/
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -71,59 +50,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Home(props) {
 
-    /*const map = {
-        center: {
-            lat: 10.99835602,
-            lng: 77.01502627
-        },
-        zoom: 11
-    };*/
-
-
     const [contextTheme] = React.useContext(ThemeContext);
     const classes = useStyles(contextTheme);
     const fixedHeightPaper = clsx(classes.paper);
 
-    /*var items = [
-        {
-            name: "Futuro",
-            img: <img src={X035} alt="X035" width="168" height="256" />,
-            description: "Probably the most random thing you have ever seen!"
-        },
-        {
-            name: "X035",
-            img: <img src={tecnotopia_black_v2} alt="tecnotopia_black_v2" width="246" height="78" />,
-            description: "Hello World!"
-        },
-        {
-            name: "Acerca de este sitio",
-            img: <img src={tecnotopia_black} alt="tecnotopia_black" width="246" height="78" />,
-            description: "Stil testing"
-        }
-    ]*/
-
     return (
         <>
-            {/*<Carousel>
-                {
-                    items.map((item, i) => <Item key={i} item={item} />)
-                }
-            </Carousel>*/}
-
-
-            {/*<div style={{ height: '50vh', width: '100%' }}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: "" }}
-                    defaultCenter={map.center}
-                    defaultZoom={map.zoom}
-                >
-                    <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
-                        text="My Marker"
-                    />
-        </GoogleMapReact></div>*/}
-
             <Grid >
 
                 <Typography color="primary" variant="h2" className={classes.title} style={{ textAlign: "center" }}>

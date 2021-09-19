@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -9,31 +9,31 @@ import { useTranslation } from 'react-i18next';
 
 /* intellectual property */
 import Home from '../components/home/Home'
-import Chapter from '../components/Chapter/Chapter'
+import Chapter from '../components/chapter/chapter'
 import Cards from '../components/cards/cards'
 import Plots from '../components/plots/plots'
 import Characters from '../components/characters/characters'
-import { ThemeContext, themes } from '../contexts/theme-context';
+import { ThemeContext, themes } from '../helpers/themeContext/themeContext';
 import Footer from '../components/footer/footer';
 
 //character cards array
 import { mainCards, chapters } from './characters_n_chapters'
 import useStyles from './style';
 
-import TecnotopiaAppBar from './appbar';
-import TecnotopiaDrawer from './drawer';
+import TecnotopiaAppBar from '../libs/appbar/appbar';
+import TecnotopiaDrawer from '../libs/drawer/drawer';
 
 function App() {
   //language
   const { i18n } = useTranslation('common');
-  const [openDrawer, setopenDrawer] = React.useState(false);
+  const [openDrawer, setopenDrawer] = useState(false);
   const handleDrawerOpen = () => {
     setopenDrawer(true);
   };
   const handleDrawerClose = () => {
     setopenDrawer(false);
   };
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const handleLanguageOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -43,7 +43,7 @@ function App() {
     }
     setAnchorEl(null);
   };
-  const [contextTheme, themeToggler] = React.useState(themes.light);
+  const [contextTheme, themeToggler] = useState(themes.light);
   const classes = useStyles(contextTheme);
   const toggleTheme = () => {
     themeToggler(contextTheme === themes.dark ? themes.light : themes.dark)

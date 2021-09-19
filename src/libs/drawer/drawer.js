@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 import Drawer from '@material-ui/core/Drawer';
-import { menu } from './menu_options'
+import { menu } from '../../main/menu_options'
 
 /**
  * icons

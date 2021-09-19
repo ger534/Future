@@ -9,7 +9,7 @@ import CustomCard from '../../libs/customCard/customCard';
 //import Test from '../../assets/Test.png'
 import Test from '../../assets/Test2.png'
 import { Container } from '@material-ui/core';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
+import useWindowDimensions from '../../helpers/useWindowDimensions/useWindowDimensions';
 
 
 let secondaryCardsArray = [
@@ -67,13 +67,8 @@ function Cards(props) {
     const fillWithGhosts = (elementsPerRow, array, setter) => {
         if(elementsPerRow === 1) {elementsPerRow = 2}
         if(elementsPerRow > 4) {elementsPerRow = 4}
-        let length = array.length //array.length
+        let length = array.length
         let cardGhosted = [...array]
-
-        console.log("length")
-        console.log(length)
-        console.log("elementsPerRow")
-        console.log(elementsPerRow)
         while(length % elementsPerRow !== 0){
             cardGhosted.push({ title: "", image: Test })
             length=length+1
@@ -84,25 +79,23 @@ function Cards(props) {
     useEffect(() => {
         fillWithGhosts(Math.floor(width/350), props.mainCards, setCards)
         fillWithGhosts(Math.floor(width/350), secondaryCardsArray, setSecondaryCards)
-        //fillWithGhosts(Math.floor((width/350)-1.1), secondaryCardsArray, setSecondaryCards)
     }, [height, width, props.mainCards])
 
     return (
         <>
             <h1 style={{ textAlign: "center" }}>Historia principal</h1>
-            <Container /* maxWidth={'lg'} fixed={true} */>
+            <Container>
                 <Grid container justify={matches ? "space-evenly" : "center"} >
-                    {/*<Grid container spacing={1} justify={matches ? "flex-start" : "center"} style={{paddingLeft:'15%',paddingRight:'10%'}}>*/}
                     {cards.map((card, i) =>
-                        <Grid item /*style={{padding:"10%"}}*/ key={i} /*sm={matches ? 6 : 7} md={4} lg={3} xl={3}*/>
+                        <Grid item key={i}>
                             <CustomCard title={card.title} text={card.text} image={card.image} route={card.title}></CustomCard>
                         </Grid>
                     )}
                 </Grid>
             </Container>
             <h1 style={{ textAlign: "center" }}>Subtramas</h1>
-            <Container /*maxWidth={false}*/>
-                <Grid container /*spacing={1}*/ justify={matches ? "space-evenly" : "center"}>
+            <Container>
+                <Grid container justify={matches ? "space-evenly" : "center"}>
                     {secondaryCards.map((card, i) =>
                         <Grid item key={i}>
                             <CustomCard title={card.title} text={card.text} image={card.image}></CustomCard>

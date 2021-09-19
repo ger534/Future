@@ -10,7 +10,7 @@ import { Grid } from '@material-ui/core';
 import axios from 'axios';
 import LoadingHOC from '../../libs/loading/LoadingHOC';
 import { flags } from '../../flags'
-import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from '../../helpers/themeContext/themeContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
         "& span": {
             display: "block",
             color: contextTheme.foreground,
-            //backgroundColor: contextTheme.background,
             resize: "none",
             overflow: "hidden",
             fontSize: "1rem",
@@ -32,12 +31,6 @@ const useStyles = makeStyles((theme) => ({
             padding: "18.5px 14px",
             border: "1px solid " + contextTheme.foreground + ' !important',
             borderRadius: "4px",
-
-            /*box-sizing: border-box;
-            align-items: center;
-            font-weight: 400;
-            line-height: 1.1876em;
-            letter-spacing: 0.00938em;*/
         },
 
     })
