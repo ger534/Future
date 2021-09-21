@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 import Drawer from '@material-ui/core/Drawer';
-import { menu } from '../../main/menu_options'
 
 /**
  * icons
@@ -20,6 +19,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 
+//list of items from drawer
+import { menu } from '../../main/menu_options'
 
 /* third party packages */
 import { Link } from 'react-router-dom';

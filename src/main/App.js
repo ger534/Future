@@ -15,6 +15,7 @@ import Plots from '../components/plots/plots'
 import Characters from '../components/characters/characters'
 import { ThemeContext, themes } from '../helpers/themeContext/themeContext';
 import Footer from '../components/footer/footer';
+import Game from "../components/game/game";
 
 //character cards array
 import { mainCards, chapters } from './characters_n_chapters'
@@ -84,6 +85,8 @@ function App() {
 
                   <Route path="/cards" component={() => <Cards mainCards={mainCards} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                   <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+
+                  <Route path="/game" component={Game} onClose={handleDrawerClose} onClick={handleDrawerClose} />                  
 
                   {/*characters paths*/}
                   {mainCards.map((character) =>

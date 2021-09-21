@@ -26,7 +26,7 @@ import { Container } from '@material-ui/core';
 //routing
 import { withRouter } from 'react-router-dom';
 
-/* helpers */
+/* services */
 import chapterService from '../../services/chapter.service'
 
 /* helpers */
