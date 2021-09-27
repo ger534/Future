@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
@@ -27,12 +26,12 @@ import TecnotopiaDrawer from '../libs/drawer/drawer';
 function App() {
   //language
   const { i18n } = useTranslation('common');
-  const [openDrawer, setopenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const handleDrawerOpen = () => {
-    setopenDrawer(true);
+    setOpenDrawer(true);
   };
   const handleDrawerClose = () => {
-    setopenDrawer(false);
+    setOpenDrawer(false);
   };
   const [anchorEl, setAnchorEl] = useState(null);
   const handleLanguageOpen = (event) => {
@@ -44,12 +43,12 @@ function App() {
     }
     setAnchorEl(null);
   };
-  const [contextTheme, themeToggler] = useState(themes.light);
+  const [contextTheme, themeToggler] = useState(JSON.parse(localStorage.getItem('contextTheme')) ? JSON.parse(localStorage.getItem('contextTheme')) : themes.light);
   const classes = useStyles(contextTheme);
   const toggleTheme = () => {
-    themeToggler(contextTheme === themes.dark ? themes.light : themes.dark)
+    localStorage.setItem('contextTheme', JSON.stringify(themes.dark) === localStorage.getItem('contextTheme') ? JSON.stringify(themes.light) : JSON.stringify(themes.dark))
+    themeToggler(JSON.parse(localStorage.getItem('contextTheme')))
   };
-  useTheme(contextTheme === themes.dark ? themes.light : themes.dark)
 
   return (
     <>

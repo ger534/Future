@@ -3,7 +3,6 @@
 /* Main content */
 #content_wrapper {
     width: 100%;
-    color: black !important;
     position: relative;
     background-color: #b4b4b438;
     margin: 0.6em auto 1.1em auto;
@@ -15,17 +14,16 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 2.3em 0 1.1em 0;
-    color: black;
     text-align: center;
 }
 
 #content {
-    font-size: 16px;
+    font-size: 18px;
 }
 
-#content a {
+#content button {
     color: white;
     background-color: rgb(197, 134, 52);
     text-decoration: none;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
