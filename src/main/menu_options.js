@@ -8,7 +8,6 @@ import RecentActorsIcon from '@material-ui/icons/RecentActors';
 import HomeIcon from '@material-ui/icons/Home';
 //import FormatPaintIcon from '@material-ui/icons/FormatPaint';
 import SportsKabaddiIcon from '@material-ui/icons/SportsKabaddi';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 //array for menu
 const menu = [
@@ -31,11 +30,6 @@ const menu = [
         icon: <SportsKabaddiIcon />,
         text: 'drawer.plots',
         route: '/plots'
-    },
-    {
-        icon: <SportsEsportsIcon />,
-        text: 'drawer.game',
-        route: '/game'
     },
 ]
 

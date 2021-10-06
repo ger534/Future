@@ -13,7 +13,7 @@ export const themes = {
 
 /*
 localStorage management of objects
-localStorage.setItem('contextTheme', JSON.stringify(names));
+localStorage.setItem('contextTheme', JSON.stringify(theme));
 JSON.parse(localStorage.getItem('contextTheme'));
 */
 

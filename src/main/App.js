@@ -17,7 +17,7 @@ import Footer from '../components/footer/footer';
 import Game from "../components/game/game";
 
 //character cards array
-import { mainCards, chapters } from './characters_n_chapters'
+import { mainCards, chapters, games } from './data'
 import useStyles from './style';
 
 import TecnotopiaAppBar from '../libs/appbar/appbar';
@@ -68,6 +68,7 @@ function App() {
 
             <TecnotopiaDrawer
               chapters={chapters}
+              games={games}
               toggleTheme={toggleTheme}
               classes={classes}
               openDrawer={openDrawer}
@@ -85,7 +86,10 @@ function App() {
                   <Route path="/cards" component={() => <Cards mainCards={mainCards} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                   <Route path="/plots" component={Plots} onClose={handleDrawerClose} onClick={handleDrawerClose} />
 
-                  <Route path="/game" component={Game} onClose={handleDrawerClose} onClick={handleDrawerClose} />                  
+                  {/*interactive game paths*/}
+                  {games.map((game) =>
+                    <Route key={game.gameId} path={game.route} render={() => <Game gameId={game.gameId} route={game.route} next={game.next} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
+                  )}
 
                   {/*characters paths*/}
                   {mainCards.map((character) =>

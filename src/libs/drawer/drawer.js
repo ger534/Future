@@ -18,6 +18,7 @@ import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 //list of items from drawer
 import { menu } from '../../main/menu_options'
@@ -40,6 +41,17 @@ export default function TecnotopiaDrawer(props) {
               {item.icon}
             </ListItemIcon>
             <ListItemText primary={t(item.text)} />
+          </ListItem>
+        </Link>
+      )}
+      <Divider />
+      {props.games.map((game) =>
+        <Link to={game.route} style={{ textDecoration: 'none', color: 'black' }} key={game.gameId} >
+          <ListItem button>
+            <ListItemIcon>
+            <SportsEsportsIcon />
+            </ListItemIcon>
+            <ListItemText primary={game.title} />
           </ListItem>
         </Link>
       )}

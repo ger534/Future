@@ -1,4 +1,7 @@
-import React, { useCallback, useEffect, useState, } from 'react';
+import React, { useCallback, useEffect, useRef, useState, } from 'react';
+
+/* intellectual property */
+import Modal from '../../libs/modal/modal';
 
 /* helpers */
 import { ThemeContext } from '../../helpers/themeContext/themeContext';
@@ -7,13 +10,14 @@ import LoadingHOC from '../loading/LoadingHOC';
 /* services */
 import gameService from '../../services/game.service';
 
-/* style */
-import './gameEngine.css'
+/* third party packages */
+import { Button, Container, makeStyles } from '@material-ui/core';
 
 //routing
 import { useHistory } from "react-router-dom";
 
-import { Button, makeStyles } from '@material-ui/core';
+/* style */
+import './gameEngine.css'
 
 const useStyles = makeStyles((theme) => ({
     root: contextTheme => ({
@@ -33,72 +37,67 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function GameEngine({ gameData, ...props}) {
+function GameEngine({ gameId, ...props }) {
 
     const history = useHistory();
     const { setLoading } = props;
 
+    //dialog
+    const [open, setOpen] = useState(false);
+
     const [title, setTitle] = useState(null)
     const [currentGame, setCurrentGame] = useState([])
-    const [currentGameIds, setCurrentGameIds] = useState(["start"])
+    const [currentGameIds, setCurrentGameIds] = useState(JSON.parse(localStorage.getItem(gameId + '_currentGameIds')) ? JSON.parse(localStorage.getItem(gameId + '_currentGameIds')).currentGameIds : ["start"])
     //const [end, setEnd] = useState(["start"])
 
     const [contextTheme] = React.useContext(ThemeContext);
     const classes = useStyles(contextTheme);
 
     const next = useCallback((newId) => {
+        console.log("..... ", newId)
+
         if (newId === "game") {
             //history.go(0)
             history.push("/")
+            let behavior = "instant"
+            window.scroll({ top: 0, left: 0, behavior });
+        }
+        /*else if(newId.includes("_no") && currentGameIds[currentGameIds.length - 1].includes("_discardable")){
+            currentGameIds.pop()
+        }*/
+        else if (newId === "completado") {
+            console.log("now start_hola_mundo")
+            setOpen(true)
         }
         setCurrentGameIds(currentGameIds => [...currentGameIds, newId]);
     }, [history, setCurrentGameIds])
 
     const findAnswer = (options, id) => {
-        return options.find(op => op.id === id).option
+        console.log(options, id)
+        if (options.find(op => op.id === id)) {
+            return options.find(op => op.id === id).noShow ? null : options.find(op => op.id === id).option
+        }
+        return null
     }
 
-    const renderGame = useCallback((gameData) => {
-        let currentGameTemp = []
-        for (let i = 0; i < gameData.length; i++) {
-            if (i !== gameData.length - 1) {
-                currentGameTemp.push({
-                    id: gameData[i].id,
-                    html: <><p>{gameData[i].text}</p>
-                        <p>{findAnswer(gameData[i].options, gameData[i + 1].id)}</p>
-                    </>
-                })
-            } else {
-                currentGameTemp.push({
-                    id: gameData[i].id,
-                    html: <><p>{gameData[i].text}</p>
-                        {gameData[i].options.map(option =>
-                            <div key={"option" + option.id}> <Button variant="contained" color="primary" onClick={() => next(option.id)}>{option.option}</Button></div>)}
-
-                    </>
-                })
-            }
-        }
-        return currentGameTemp
-    }, [next])
 
     const renderGameWithHTML = useCallback((gameData) => {
         let currentGameTemp = []
         for (let i = 0; i < gameData.length; i++) {
-            if (i !== gameData.length - 1) {
+            if (i !== gameData.length - 1 /*&& !gameData[i + 1].id.includes("_no") && !gameData[i].id.includes("_discardable")*/) {
                 currentGameTemp.push({
                     id: gameData[i].id,
                     html: <><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
-                        <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: "—"+findAnswer(gameData[i].options, gameData[i + 1].id) }} />
+                        {findAnswer(gameData[i].options, gameData[i + 1].id) ? <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: "—" + findAnswer(gameData[i].options, gameData[i + 1].id) }} /> : null}
                     </>
                 })
             } else {
                 currentGameTemp.push({
                     id: gameData[i].id,
                     html: <><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
-                        {gameData[i].options.map(option =>
+                        <div style={{display:"flex", justifyContent: "center"}} >{gameData[i].options.map(option =>
                             <div key={"option" + option.id}> <Button variant="contained" color="primary" onClick={() => next(option.id)}><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: option.option }} /></Button></div>)}
-
+                        </div>
                     </>
                 })
             }
@@ -110,30 +109,65 @@ function GameEngine({ gameData, ...props}) {
     useEffect(() => {
         console.log("currentGameIds", currentGameIds)
         setLoading(true)
-        gameService.getGameByScreens("terms_and_conditions", currentGameIds).then(result => {
+        gameService.getGameByScreens(gameId, currentGameIds).then(result => {
             setTitle(result.title)
-            setCurrentGame(result.htmlFlag ? [...renderGameWithHTML(result.data)] : [...renderGame(result.data)])
+            setCurrentGame([...renderGameWithHTML(result.data)])
             setLoading(false)
+            localStorage.setItem(gameId + '_currentGameIds', JSON.stringify({ currentGameIds: currentGameIds }));
         })
         /*return () => {
             // Limpiar la suscripción
             subscription.unsubscribe();
           };*/
-    }, [renderGame, renderGameWithHTML, currentGameIds, setLoading])
+    }, [gameId, renderGameWithHTML, currentGameIds, setLoading])
+
+    const restart = () => {
+        localStorage.removeItem(gameId + '_currentGameIds')
+        history.go(0)
+    }
+
+    const back = () => {
+        setCurrentGame(currentGame => currentGame.slice(0, -1));
+        setCurrentGameIds(currentGameIds => currentGameIds.slice(0, -1));
+    }
+
+    //auto scroll down logic
+    //www.codegrepper.com/code-examples/javascript/
+    //frameworks/react/scrollbar+automatically+scroll+down+as+new+divs+are+added+reactjs
+    const messagesEndRef = useRef(null)
+    const scrollToBottom = () => {
+        if (currentGame.length > 1) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }
+
+    useEffect(scrollToBottom, [currentGame]);
 
     return (
         <>
-            <div id="content_wrapper" className={classes.root}>
-                <h1>{title}</h1>
-                <div id="content">
-                    {currentGame.map((screen) =>
-                        <div key={screen.id}>
-                            {screen.html}
-                        </div>
-                    )}
+            <Container maxWidth="lg">
+                <div id="content_wrapper" className={classes.root}>
+                    <h1>{title}</h1>
+                    <div id="content">
+                        {currentGame.map((screen) =>
+                            <div key={screen.id}>
+                                {screen.html}
+                            </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
                 </div>
-            </div>
+                <div style={{ float: "right" }}>
+                    <Button color="secondary" variant="contained" onClick={restart}> borrar progreso</Button>
+                    &nbsp;
+                    <Button color="primary" style={{ backgroundColor: "green" }} variant="contained" onClick={back}>Revertir última decisión</Button>
+                </div>
+                <Modal
+                    open={open} setOpen={setOpen}
+                    description={<div class="typewriter"><h1>Comienza: Hola Mundo.</h1></div>}
+                    actions={<Button onClick={() => { setOpen(false); next("start_hola_mundo") }} color="primary" autoFocus>Continuar</Button>} />
 
+            </Container>
         </>
     )
 }

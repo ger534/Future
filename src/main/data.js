@@ -39,7 +39,13 @@ const mainCards = [
     { title: "Ambivalencia", file_name: "8-ambivalence", route: "/8-ambivalence", next: "/" },
   ]
 
+  let games = [
+    { title: "Términos y condiciones", gameId: "terms_and_conditions", route: "/terms_and_conditions", next: "/hello_world" },
+    { title: "Navecita", gameId: "spaceship", route: "/spaceship", next: "/" },
+  ]
+
   export{
     mainCards,
-    chapters
+    chapters, 
+    games
   } 

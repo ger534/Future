@@ -13,7 +13,7 @@ function Game(props) {
 
     return (
         <>
-            <GameEngine gameData={[]} />
+            <GameEngine gameId={props.gameId} />
         </>
     )
 }
