@@ -50,6 +50,8 @@ function GameEngine({ gameId, ...props }) {
     const [currentGameIds, setCurrentGameIds] = useState(JSON.parse(localStorage.getItem(gameId + '_currentGameIds')) ? JSON.parse(localStorage.getItem(gameId + '_currentGameIds')).currentGameIds : ["start"])
     //const [end, setEnd] = useState(["start"])
 
+    const [animation, setAnimation] = useState("")
+
     const [contextTheme] = React.useContext(ThemeContext);
     const classes = useStyles(contextTheme);
 
@@ -67,6 +69,12 @@ function GameEngine({ gameId, ...props }) {
         }*/
         else if (newId === "completado") {
             console.log("now start_hola_mundo")
+            setAnimation("Comienza: Hola Mundo.")
+            setOpen(true)
+        }
+        else if (newId === "hola_mundo_1_completado") {
+            console.log("now hola_mundo_2")
+            setAnimation("Continúa: Hola Mundo.")
             setOpen(true)
         }
         setCurrentGameIds(currentGameIds => [...currentGameIds, newId]);
@@ -87,16 +95,21 @@ function GameEngine({ gameId, ...props }) {
             if (i !== gameData.length - 1 /*&& !gameData[i + 1].id.includes("_no") && !gameData[i].id.includes("_discardable")*/) {
                 currentGameTemp.push({
                     id: gameData[i].id,
-                    html: <><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
-                        {findAnswer(gameData[i].options, gameData[i + 1].id) ? <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: "—" + findAnswer(gameData[i].options, gameData[i + 1].id) }} /> : null}
+                    html: <> { gameData[i + 1].id.includes("_no") && gameData[i].id.includes("_discardable") ? null : <div dangerouslySetInnerHTML={{ __html: gameData[i].text }} /> }
+                        {findAnswer(gameData[i].options, gameData[i + 1].id) ? <div dangerouslySetInnerHTML={{ __html: "—" + findAnswer(gameData[i].options, gameData[i + 1].id) }} /> : null}
                     </>
                 })
             } else {
                 currentGameTemp.push({
                     id: gameData[i].id,
-                    html: <><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
-                        <div style={{display:"flex", justifyContent: "center"}} >{gameData[i].options.map(option =>
-                            <div key={"option" + option.id}> <Button variant="contained" color="primary" onClick={() => next(option.id)}><div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: option.option }} /></Button></div>)}
+                    html: <><hr/><div dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
+                        <div className="optionsButtons">
+                            {gameData[i].options.map(option =>
+                                <div key={"option" + option.id}>
+                                    <Button variant="contained" color="primary" onClick={() => next(option.id)}>
+                                        <div dangerouslySetInnerHTML={{ __html: option.option }} />
+                                    </Button>
+                                </div>)}
                         </div>
                     </>
                 })
@@ -157,14 +170,14 @@ function GameEngine({ gameId, ...props }) {
                         <div ref={messagesEndRef} />
                     </div>
                 </div>
-                <div style={{ float: "right" }}>
+                <div className="controlPanel">
                     <Button color="secondary" variant="contained" onClick={restart}> borrar progreso</Button>
                     &nbsp;
                     <Button color="primary" style={{ backgroundColor: "green" }} variant="contained" onClick={back}>Revertir última decisión</Button>
                 </div>
                 <Modal
                     open={open} setOpen={setOpen}
-                    description={<div class="typewriter"><h1>Comienza: Hola Mundo.</h1></div>}
+                    description={<div class="typewriter"><h1>{animation}</h1></div>}
                     actions={<Button onClick={() => { setOpen(false); next("start_hola_mundo") }} color="primary" autoFocus>Continuar</Button>} />
 
             </Container>
