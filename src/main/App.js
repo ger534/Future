@@ -95,7 +95,8 @@ function App() {
                   {mainCards.map((character) =>
                     <Route path={`/${character.title}`} key={character.title} render={() => <Characters char={character.title} image={character.image} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                   )}
-                  {/*chapters paths*/}
+                  
+                  {/*static stories paths*/}
                   {chapters.map((chapter) =>
                     <Route key={chapter.title} path={chapter.route} render={() => <Chapter title={chapter.title} file_name={chapter.file_name} route={chapter.route} next={chapter.next} />} onClose={handleDrawerClose} onClick={handleDrawerClose} />
                   )}

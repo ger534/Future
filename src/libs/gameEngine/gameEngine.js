@@ -58,8 +58,13 @@ function GameEngine({ gameId, ...props }) {
     const next = useCallback((newId) => {
         console.log("..... ", newId)
 
-        if (newId === "game") {
-            //history.go(0)
+        if (newId === "restart") {
+            history.go(0)
+            let behavior = "instant"
+            window.scroll({ top: 0, left: 0, behavior });
+            localStorage.removeItem(gameId + '_currentGameIds')
+        }
+        else if (newId === "game") {
             history.push("/")
             let behavior = "instant"
             window.scroll({ top: 0, left: 0, behavior });
@@ -102,7 +107,8 @@ function GameEngine({ gameId, ...props }) {
             } else {
                 currentGameTemp.push({
                     id: gameData[i].id,
-                    html: <><hr/><div dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
+                    html: <>{gameData[i].id !== "start" && <hr/>}
+                    <div dangerouslySetInnerHTML={{ __html: gameData[i].text }} />
                         <div className="optionsButtons">
                             {gameData[i].options.map(option =>
                                 <div key={"option" + option.id}>
@@ -178,7 +184,7 @@ function GameEngine({ gameId, ...props }) {
                 <Modal
                     open={open} setOpen={setOpen}
                     description={<div class="typewriter"><h1>{animation}</h1></div>}
-                    actions={<Button onClick={() => { setOpen(false); next("start_hola_mundo") }} color="primary" autoFocus>Continuar</Button>} />
+                    actions={<Button onClick={() => { setOpen(false); history.push(props.next) }} color="primary" autoFocus>Continuar</Button>} />
 
             </Container>
         </>

@@ -40,8 +40,8 @@ const mainCards = [
   ]
 
   let games = [
-    { title: "Términos y condiciones", gameId: "terms_and_conditions", route: "/terms_and_conditions", next: "/hello_world" },
-    { title: "Navecita", gameId: "spaceship", route: "/spaceship", next: "/" },
+    { title: "Términos y condiciones", gameId: "terms_and_conditions", route: "/terms_and_conditions", next: "/hello_world_1" },
+    { title: "Hola Mundo: Acto I", gameId: "hello_world_1", route: "/hello_world_1", next: "/hello_world_2" },
   ]
 
   export{
