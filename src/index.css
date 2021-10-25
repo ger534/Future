@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "FuturaBook";   /*Can be any text*/
+  src: local("FuturaBook"),
+    url("./fonts/FuturaBook.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura Bold font";   /*Can be any text*/
+  src: local("Futura Bold font"),
+    url("./fonts/Futura Bold font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura Medium font";   /*Can be any text*/
+  src: local("Futura Medium font"),
+    url("./fonts/Futura Medium font.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

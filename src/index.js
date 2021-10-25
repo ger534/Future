@@ -5,6 +5,12 @@ import App from './main/App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 
+//futura fonts
+import "./fonts/FuturaBook.ttf"
+import "./fonts/Futura Bold font.ttf"
+import "./fonts/Futura Medium font.ttf"
+
+
 //firebase analytics
 import app from './helpers/firebase/firebase'
 import { getAnalytics } from 'firebase/analytics';
