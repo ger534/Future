@@ -1,35 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
-import { flags } from '../../flags';
-import { useTranslation } from 'react-i18next';
 
 export default function Footer(props) {
 
-    //language
-    const { t } = useTranslation('common');
-
-    return (
-        <>
-            <Typography variant="body2" color="textSecondary" align="center" {...props}>
-                <a href={flags().moreAboutFuture} style={{ textDecoration: 'none', color: 'gray' }}>{t('footer')}</a>
-                {' '}
-                {new Date().getFullYear()}
-                {'.'}
-            </Typography>
-        </>
-    );
+  return (
+    <>
+      <div style={{ padding: "10px", backgroundColor: "#011423", color: props.contextTheme.elements1, borderTop: `1px solid` }}>
+        <Typography variant="body2" /*align="center"*/ {...props}>
+          Tecnotopía. San José, Costa Rica 2021.
+        </Typography>
+      </div>
+    </>
+  );
 }
-
-
-/*
- function Footer(props) {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center" {...props}>
-        <a href={flags().moreAboutFuture} style={{ textDecoration: 'none', color: 'gray' }}>{t('footer')}</a>
-        {' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-*/
