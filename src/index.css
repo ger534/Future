@@ -1,4 +1,9 @@
 @font-face {
+  font-family: "OpenSans";   /*Can be any text*/
+  src: local("OpenSans"),
+    url("./fonts/OpenSans 1.ttf") format("truetype");
+}
+@font-face {
   font-family: "FuturaBook";   /*Can be any text*/
   src: local("FuturaBook"),
     url("./fonts/FuturaBook.ttf") format("truetype");
@@ -28,4 +33,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.MuiTabs-indicator{
+  /*background-color: #FFF227 !important;*/
+  background-color: #8FF8FF !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

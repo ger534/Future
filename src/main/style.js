@@ -4,28 +4,43 @@ const drawerWidth = 254;
 const useStyles = makeStyles(theme => ({
     "@global": {
         body: {
-            //backgroundColor: '#363537'
-            //minHeight: "100vh"
-            minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
-        }
+            color: "black"
+        },
+        p: {
+            //fontFamily: "FuturaBook",
+            lineHeight: "150%",
+            fontFamily: "OpenSans",
+            fontSize: "20px"            
+        },
+        h1: {
+            //fontFamily: "Futura Bold font",
+            fontFamily: "OpenSans",
+            fontSize: "30px"
+        },
+        h4: {
+            //fontFamily: "Futura Bold font",
+            fontFamily: "OpenSans",
+            fontSize: "20px"
+        },
+        h2: {
+            //fontFamily: "Futura Medium font",
+            fontFamily: "OpenSans",
+            fontSize: "16px"
+        },
     },
-    /*"@global": contextTheme => ({
-      body: {
-        backgroundColor: contextTheme.background
-      }
-    }),*/
     root: contextTheme => ({
-        display: 'flex',
+        //display: 'flex',
         backgroundColor: contextTheme.background,
         color: contextTheme.foreground,
         transition: "all 0.50s linear",
-
     }),
-    toolbar: {
+    toolbar: contextTheme => ({
+        backgroundColor: "#001433",//"#0C254D",
         paddingRight: 24, // keep right padding when drawer closed
-    },
+        borderBottom: `1px solid ${contextTheme.elements1} !important`
+    }),
     toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
@@ -61,14 +76,17 @@ const useStyles = makeStyles(theme => ({
         position: 'relative !important', //to override the reorganize that the build is doing
         whiteSpace: 'nowrap',
         width: drawerWidth,
-        overflow: "hidden",
+        //overflow: "hidden",
+        overflow: "visible",
         backgroundColor: contextTheme.background,
         color: contextTheme.foreground,
         transition: "all 0.50s linear",
         //height: '100vh',
+        
     }),
     drawerPaperClose: contextTheme => ({
-        overflowX: 'hidden',
+        //overflowX: 'hidden',
+        overflow: "visible",
         width: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
             width: theme.spacing(9),
@@ -78,14 +96,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         //height: '100vh',
-        overflow: 'auto', //"mmmmmmmmmmmmm"
-    },
-    container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
-        minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
+        //overflow: 'auto', //"mmmmmmmmmmmmm"
     },
     paper: contextTheme => ({
         padding: theme.spacing(2),

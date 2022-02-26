@@ -10,6 +10,7 @@ import "./fonts/FuturaBook.ttf"
 import "./fonts/Futura Bold font.ttf"
 import "./fonts/Futura Medium font.ttf"
 
+import "./fonts/OpenSans 1.ttf"
 
 //firebase analytics
 import app from './helpers/firebase/firebase'
