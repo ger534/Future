@@ -24,7 +24,7 @@ const menu = [
     {
         icon: <RecentActorsIcon />,
         text: 'drawer.cards',
-        route: '/cards'
+        route: '/characters'
     },
     {
         icon: <SportsKabaddiIcon />,
