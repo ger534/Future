@@ -36,15 +36,6 @@ const useStyles = makeStyles((theme) => ({
         height: 240,
         width: "100%"
     },
-    h3: {
-        fontSize: '1.2rem',
-        '@media (min-width:600px)': {
-            fontSize: '1.5rem',
-        },
-        [theme.breakpoints.up('md')]: {
-            fontSize: '2.4rem',
-        }
-    }
 }));
 
 export default function ProjectPresentation(props) {
@@ -54,36 +45,32 @@ export default function ProjectPresentation(props) {
 
     const [contextTheme] = React.useContext(ThemeContext);
     const classes = useStyles(contextTheme);
-     
+
     const fixedHeightPaper = clsx(classes.paper);
 
     return (
         <>
-            <Grid >
+            <Grid>
+                <br></br>
+                {/*<h1 style={{ textAlign: "center" }}> {`<${<strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong>}/>`} </h1>*/}
+                <h1 style={{ textAlign: "center" }}> {`<Tecnotopía/>`}</h1>
 
-                <Typography color="primary" variant="h2" className={classes.title} style={{ textAlign: "center" }}>
-                    <strong> Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub> </strong>
 
-                </Typography>
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            ¿Cómo surge y qué pretende el proyecto?
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>¿Cómo surge y qué pretende el proyecto?</h2>
                         <Typography variant="subtitle1">
                             <p><strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> busca ser un espacio en la internet que permita albergar escritura costarricense de todo aquel autor que desee ser parte de esta biblioteca. Sin embargo, para cumplir esta meta se necesita primero contar con una plataforma electrónica pertinente e innovadora. El presente documento está limitado a la creación de la página web y la publicación de una obra literaria dentro del sitio. La obra será una ficción interactiva, aquella que permite al lector tomar decisiones que afectan el contenido de la trama y desenlace. Se hace esta selección pues va más allá de la literatura convencional escrita en papel. La tecnología web permite con facilidad narrar historias donde el receptor puede tomar un papel protagónico, escogiendo de forma periódica las acciones de los personajes.</p>
-                            <p>Yo, Gabriel Espinoza Rojas, soy un escritor novel y me gano la vida trabajando con soluciones de <i>software</i>. Tengo las capacidades técnicas para crear los cimientos de <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong>. También estoy escribiendo una novela que explora las posibilidades de alcanzar una utopía tecnología. Para esta etapa proyecto, tomé el mismo universo ficticio de mi novela para escribir la historia “Hola Mundo”, la que espero que inaugure la publicación de la página web en la red, si el proyecto es financiado. Actualmente, “Hola Mundo” es una historia lineal y no interactiva, sin embargo, puedo adaptarla a la interacción en una página web que he estado trabajando desde abril del presente año (disponible <a href="https://gabo534.web.app/" target="_blank" rel="noopener noreferrer">aquí</a>). Tengo la certeza de que puedo encargarme del desarrollo de historia y el desarrollo de la página web, pero me gustaría recibir apoyo externo pues me es difícil cubrir todos los gatos por mi cuenta, considerando que es un proyecto sin fines de lucro.</p>
+                            <p>Yo, Gabriel Espinoza Rojas, soy un escritor novel y me gano la vida trabajando con soluciones de <i>software</i>. Tengo las capacidades técnicas para crear los cimientos de <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong>. También estoy escribiendo una novela que explora las posibilidades de alcanzar una utopía tecnología. Para esta etapa proyecto, tomé el mismo universo ficticio de mi novela para escribir la historia “Hola Mundo”, la que espero que inaugure la publicación de la página web en la red, si el proyecto es financiado. Actualmente, “Hola Mundo” es una historia lineal y no interactiva, sin embargo, puedo adaptarla a la interacción en una página web que he estado trabajando desde abril del presente año (disponible <a style={contextTheme.foreground === "#000000" ? {} : { color: contextTheme.details }} href="https://gabo534.web.app/" target="_blank" rel="noopener noreferrer">aquí</a>). Tengo la certeza de que puedo encargarme del desarrollo de historia y el desarrollo de la página web, pero me gustaría recibir apoyo externo pues me es difícil cubrir todos los gatos por mi cuenta, considerando que es un proyecto sin fines de lucro.</p>
                             <p>Hasta el momento, yo he trabajado en <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> utilizando herramientas gratuitas y dependiendo únicamente de mi conocimiento, sin embargo, antes de pensar en abrir la plataforma al público, es importante realizar una inversión monetaria. Es necesario contratar una casa editorial para revisar la historia “Hola Mundo”. También me gustaría poder comprar mejores herramientas de <i>software</i> para reducir los tiempos de respuesta y aumentar el rendimiento general de la página web. Y, por último, me parece vital contar con el apoyo de ilustraciones profesionales que capten a nivel visual la naturaleza del proyecto y mejorar la experiencia de usuario. <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> tiene potencial para ser una nueva forma de disfrutar la literatura interactiva, pero es y será un proyecto en desarrollo hasta que se invierta una cantidad sustancial de dinero, tanto en aspectos técnicos como artísticos y una campaña publicitaria.</p>
                         </Typography>
                     </Grid>
                 </Paper>
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Objetivos
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Objetivos</h2>
                         <Typography variant="subtitle1">
                             <ul>
                                 <li><h3>Objetivo General</h3></li>
@@ -99,11 +86,9 @@ export default function ProjectPresentation(props) {
                     </Grid>
                 </Paper>
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Metas
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Metas</h2>
                         <Typography variant="subtitle1">
                             <p>La meta inmediata es llamar la atención del público costarricense y fomentar la lectura con una historia dinámica y en un entorno virtual agradable, interactivo e intuitivo para grandes y chicos. A nivel personal, he integrado conceptos básicos de ingeniería en el relato ficticio y creo que pueden ser útiles para adolescentes o jóvenes que aún no saben que profesión les gustaría ejercer en el futuro. También he conversado con colegas sobre el proyecto y varios escritores me han mencionado que les gustaría algún día realizar una colaboración con conmigo para publicar contenido también. Esta es sin duda la meta a largo plazo que me gustaría alcanzar. </p>
                             <p>El internet está vivo y crece todos los días, de la misma manera, <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> puede cobrar vida y seguir creciendo en el futuro. Los recursos técnicos y las ilustraciones que podría comprar con el financiamiento no se limitan para la publicación de “Hola Mundo”, el género de "ficción interactiva" o el plazo para ejecutar este proyecto. La página web podrá ser expandida siempre que se desee, dándole potencial para volverse un repositorio virtual de literatura que, a diferencia de blogs comerciales o redes sociales, puede modificarse a completa voluntad de los autores para albergar distintos estilos de narrativa, presentaciones o incluso contenido educativo. </p>
@@ -111,22 +96,17 @@ export default function ProjectPresentation(props) {
                     </Grid>
                 </Paper>
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Producto final
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Producto final</h2>
                         <Typography variant="subtitle1">
                             <p>Un sitio web público bajo el dominio www.tecno-topia.com que sea funcional para computadoras de escritorio, portátiles, tabletas y teléfonos celulares. En dicho sitio, los visitantes podrán leer una historia de ficción interactiva, la cual ofrecerá múltiples finales que serán desbloqueados según de las decisiones del lector. Adicionalmente, también habrá contenido sobre el proyecto <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> y personajes de la obra.</p>
                         </Typography>
                     </Grid>
                 </Paper>
 
-                <Paper className={fixedHeightPaper}>
-
-                    <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                        Población beneficiaria
-                    </Typography>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
+                    <h2 style={{ fontSize: "40px", textAlign: "left" }}>Población beneficiaria</h2>
                     <Typography variant="subtitle1">
                         <p>Cualquier persona de habla hispana y con acceso a una computadora o un teléfono e internet podría acceder de forma gratuita a la aplicación web. Y la lectura interactiva busca lograr llamar la atención de incluso lectores casuales. </p>
                     </Typography>
@@ -134,11 +114,9 @@ export default function ProjectPresentation(props) {
                 </Paper>
 
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Localización geográfica
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Localización geográfica</h2>
                         <Typography variant="subtitle1">
                             <p>La página web asociada a la obra no tiene limitaciones geográficas, por lo que también otorga al proyecto un alcance global. Sin embargo, parte de la campaña publicitaria estará enfocada en suelo costarricense, ya sea mediante entrevistas con entidades nacionales o participando en ferias o eventos en la GAM.</p>
                         </Typography>
@@ -155,11 +133,9 @@ export default function ProjectPresentation(props) {
                     </Grid>
                 </Paper>
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Cronograma de ejecución
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Cronograma de ejecución.</h2>
                         <Typography variant="subtitle1">
                             <p>La Tabla 1 muestra el cronograma propuesto para la ejecución del proyecto. Considera tareas de edición del texto, desarrollo web, ilustración de personajes e ilustraciones para promocionar el sitio, la publicación de la plataforma electrónica y la revisión de la experiencia de usuario (UX) y usabilidad de la herramienta. Cada uno de estos tiempos han sido calendarizados luego de estipularlos con las contrapartes involucradas (la casa editorial, los ilustradores y la diseñadora UX).</p>
                         </Typography>
@@ -176,11 +152,9 @@ export default function ProjectPresentation(props) {
                 </Paper>
 
 
-                <Paper className={fixedHeightPaper}>
+                <Paper className={fixedHeightPaper} style={{ textAlign: "justify", marginBottom: "0px" }}>
                     <Grid item md={12}>
-                        <Typography color="primary" component="p" variant="h3" className={classes.h3}>
-                            Promoción y difusión de las actividades
-                        </Typography>
+                        <h2 style={{ fontSize: "40px", textAlign: "left" }}>Promoción y difusión de las actividades.</h2>
                         <Typography variant="subtitle1">
                             <p>La Tabla 2 muestra el cronograma propuesto para las actividades de promoción y difusión del proyecto. Considera una presentación de la plataforma electrónica para la Biblioteca Pública de Tres Ríos. También se toma en cuenta la participación en la Feria Hecho Aquí 2021 (FHA201). Es importante aclarar que para esta feria me he postulado con mis coautores del libro “X035: Un relato con perfidia y otros cuentos” y nuestra participación no es definitiva, pero de serlo, podría ser una oportunidad para entregar contenido promocional sobre <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> y darle visibilidad a la plataforma. Este cronograma también considera la publicidad que se haría en redes sociales, con un alcance diario estimado de cuarenta mil personas y la impresión de cuatrocientos marcapáginas o separadores de libros con información sobre el proyecto y como acceder al sitio web.</p>
                             <p style={{ fontSize: "14px" }}><strong>Nota:</strong> La Biblioteca Pública de Cartago también está anuente a prestar un espacio para presentar el proyecto, sin embargo, no fue posible definir una fecha tentativa debido a que por el momento <strong>Tecno<sub style={{ fontSize: "50%" }}>TOPIA</sub></strong> es solo una propuesta y no un proyecto avalado.</p>
@@ -197,7 +171,7 @@ export default function ProjectPresentation(props) {
                     </Grid>
                 </Paper>
 
-                {/*<Paper className={fixedHeightPaper}>
+                {/*<Paper className={fixedHeightPaper} style={{ textAlign: "justify" }}>
                     <Grid item md={12}>
                         <Typography color="primary" component="p" variant="h3" className={classes.h3}>
                             Presupuesto
