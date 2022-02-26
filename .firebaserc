@@ -1,5 +1,18 @@
 {
   "projects": {
-    "default": "gabo534"
+    "default": "gabo534",
+    "prod": "tecno-topia"
+  },
+  "targets": {
+    "gabo534": {
+      "hosting": {
+        "gabo534": [
+          "gabo534"
+        ],
+        "tecno-topia": [
+          "tecno-topia"
+        ]
+      }
+    }
   }
 }
