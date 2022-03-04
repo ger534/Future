@@ -167,7 +167,7 @@ function Tale(props) {
           <Grid className={classes.root} style={matches ? { width: "90%", textAlign: "center" } : { width: "95%", textAlign: "center" }}>
             <div style={{ overflow: "hidden" }} dangerouslySetInnerHTML={{ __html: text }} />
 
-            <img src={props.cover} width={"80%"} style={{ s: "1px" }} alt={`image ${props.file_name}`} />
+            <img src={props.cover} width={"80%"} style={{ s: "1px" }} alt={`${props.file_name}`} />
           </Grid>
 
           {/* space for comments (?) */}

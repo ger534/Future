@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 
 /* third party packages */
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -31,7 +30,6 @@ import useStyles from './style';
 import TecnotopiaAppBar from '../libs/appbar/appbar';
 import Plays from "../components/plays/plays";
 import useWindowDimensions from "../helpers/useWindowDimensions/useWindowDimensions";
-import { Tab } from "@material-ui/core";
 
 function App() {
   

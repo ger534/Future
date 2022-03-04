@@ -1,8 +1,4 @@
-import Test from '../assets/Test2.png'
 import X035 from '../assets/X035.png'
-import Aniristuv from '../assets/Aniristuv.png'
-import OCT from '../assets/803.png'
-import Irvus from '../assets/503.png'
 
 //acts images
 import Ojo from '../assets/logo_tecno.png'

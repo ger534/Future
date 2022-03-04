@@ -9,7 +9,6 @@ import { Container } from '@material-ui/core';
 import useWindowDimensions from '../../helpers/useWindowDimensions/useWindowDimensions';
 
 /* intellectual property */
-import CustomCard from '../../libs/customCard/customCard';
 import Test from '../../assets/Test2.png'
 
 //routing
@@ -24,7 +23,6 @@ function Cards(props) {
     const { height, width } = useWindowDimensions();
 
     const [cards, setCards] = useState([])
-    const [secondaryCards, setSecondaryCards] = useState([])
 
     const fillWithGhosts = (elementsPerRow, array, setter) => {
         if (elementsPerRow === 1) { elementsPerRow = 2 }
@@ -52,7 +50,7 @@ function Cards(props) {
                         <div style={{ width: "30%"/*, padding: "0px"*/ }} key={i}>
                             {/*<CustomCard title={card.title} text={card.text} image={card.image} route={card.title}></CustomCard>*/}
                             <div onClick={() => { history.push(card.route) }} style={{ cursor:"pointer", paddingTop: "1%", margin: "1px", display: "flex", justifyContent: "center", flexDirection: "column", border: "1px solid ", alignItems: "center" }}>
-                                <img src={card.image} width={"100%"} height={"30%"} style={{ s: "1px" }} alt={`image ${card.title}`} />
+                                <img src={card.image} width={"100%"} height={"30%"} style={{ s: "1px" }} alt={`${card.title}`} />
                                 <h1 style={{ textAlign: "center" }}>{card.title}</h1>
                             </div>
                         </div>

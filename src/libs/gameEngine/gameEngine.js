@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState, } from 'react';
 
 /* intellectual property */
 import Modal from '../../libs/modal/modal';
-import saveIcon from '../../assets/icons/save.svg'
 
 /* helpers */
 import { ThemeContext } from '../../helpers/themeContext/themeContext';
@@ -14,7 +13,7 @@ import useWindowDimensions from "../../helpers/useWindowDimensions/useWindowDime
 import gameService from '../../services/game.service';
 
 /* third party packages */
-import { Icon, Box, Button, Container, IconButton, makeStyles } from '@material-ui/core';
+import { Button, Container, makeStyles } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 //routing
@@ -26,15 +25,6 @@ import { getAnalytics, logEvent } from 'firebase/analytics';
 //firestore
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
-
-/* icons */
-import SaveIcon from '@material-ui/icons/Save';
-//import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-//import ArrowForwardIcon from '@material-ui/icons/ArrowBack';
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
-import MenuIcon from '@material-ui/icons/Menu';
-//import DoNotDisturbIcon from '@material-ui/icons/DoNotDisturbIcon';
-
 
 /* style */
 import './gameEngine.css'
@@ -192,7 +182,7 @@ function GameEngine({ gameId, ...props }) {
                             html: <>{gameData[i].id !== "start" && <hr style={{ display: "block", height: "1px", border: 0, borderTop: "1px solid #FFF227", margin: "1em 0; padding: 0" }} />}
                                 <div dangerouslySetInnerHTML={{
                                     __html: `<p>Aciertos: ${currentGameIds.filter(x => x.includes("_yes")).length}, infortunios: ${currentGameIds.filter(x => x.includes("_no")).length}.</p>
-                                <p><span class=\"good-action-box\"><code class=\"bad-action\"><span style=\"font-size: 16px;\">(✖️) </span>Puede continuar, pero le estaremos observando.</code></span></p>` }} />
+                                <p><span class="good-action-box"><code class="bad-action"><span style="font-size: 16px;">(✖️) </span>Puede continuar, pero le estaremos observando.</code></span></p>` }} />
                                 <div className="optionsButtons">
                                     {gameData[i].options.map((option, i) =>
                                         <div key={`option_${option.id}`}>
@@ -209,7 +199,7 @@ function GameEngine({ gameId, ...props }) {
                             html: <>{gameData[i].id !== "start" && <hr style={{ display: "block", height: "1px", border: 0, borderTop: "1px solid #FFF227", margin: "1em 0; padding: 0" }} />}
                                 <div dangerouslySetInnerHTML={{
                                     __html: `<p>Aciertos: ${currentGameIds.filter(x => x.includes("_yes")).length}, infortunios: ${currentGameIds.filter(x => x.includes("_no")).length}.</p>
-                                <p><span class=\"good-action-box\"><code class=\"good-action\"><span style=\"font-size: 16px;\">(✔️) </span>Análisis psicológico y social completado.</code></span></p>
+                                <p><span class="good-action-box"><code class="good-action"><span style="font-size: 16px;">(✔️) </span>Análisis psicológico y social completado.</code></span></p>
                                 ` }} />
                                 <div className="optionsButtons">
                                     {gameData[i].options.map((option, i) =>
@@ -426,7 +416,7 @@ function GameEngine({ gameId, ...props }) {
                 <Modal
                     open={open} setOpen={setOpen}
                     /* image here */
-                    description={<img src={props.image} width={"100%"} height={"30%"} style={{ s: "1px" }} alt={`image ${props.gameId}`} />}
+                    description={<img src={props.image} width={"100%"} height={"30%"} style={{ s: "1px" }} alt={`${props.gameId}`} />}
                     //description={<div className="typewriter"><h1>{animation}</h1></div>}
                     actions={<Button onClick={() => { setOpen(false); history.push(props.next) }} color="primary" autoFocus>Continuar</Button>} />
                 <div ref={pageEndRef} />

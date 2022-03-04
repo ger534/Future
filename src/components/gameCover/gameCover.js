@@ -1,5 +1,5 @@
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Button, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
 
 /* helpers */
 //import { UserContext } from '../../helpers/userContext/userContext';
@@ -27,7 +27,6 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
 /* style */
 import './gameCover.css'
-import CustomCard from '../../libs/customCard/customCard';
 import Modal from '../../libs/modal/modal';
 
 const useStyles = makeStyles((theme) => ({
