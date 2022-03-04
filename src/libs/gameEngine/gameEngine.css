@@ -7,7 +7,7 @@
     background-color: #b4b4b438;
     /*margin: 0.6em auto 1.1em auto; TODO*/
     padding: 1em;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 #content_wrapper h1 {
@@ -39,7 +39,6 @@
 }
 
 .controlPanel {
-    float: right;
 }
 
 .good-action-box {
@@ -80,8 +79,19 @@
 
 }
 
+.no_p {
+  /*font-family: "FuturaBook";*/
 
+  font-size: 20px;   
+}
 
+.snippet {
+  display: block; 
+  white-space: pre; 
+  border: 1px solid #999;
+  background-color:rgb(124, 124, 124); 
+  overflow: auto;
+}
 
 
 
