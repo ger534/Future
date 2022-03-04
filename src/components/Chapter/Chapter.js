@@ -24,7 +24,7 @@ import LoadingHOC from '../../libs/loading/LoadingHOC';
 import { Container } from '@material-ui/core';
 
 //routing
-import { withRouter } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 /* services */
 import chapterService from '../../services/chapter.service'
@@ -47,6 +47,8 @@ function Chapter(props) {
   const [text, setText] = useState("")
 
   const { loading, setLoading } = props;
+
+  const history = useHistory();
 
   //dialog
   const [open, setOpen] = useState(false);
@@ -89,12 +91,13 @@ function Chapter(props) {
 
   //send user to next chapter
   const nextChapter = () => {
-    props.history.push(`${props.next}`)
+    history.push(`${props.next}`)
 
   }
 
   return (
     <>
+    <br></br>
       <Container maxWidth="lg">
         {text !== "error" && !loading && <>
           <Typography color="primary" component="p" variant="h3" style={{ textAlign: "center" }}>
@@ -142,5 +145,4 @@ function Chapter(props) {
   );
 }
 
-//export default LoadingHOC(Chapter);
-export default withRouter(LoadingHOC(Chapter));
+export default LoadingHOC(Chapter);
