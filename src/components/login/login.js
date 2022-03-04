@@ -14,7 +14,7 @@ import './login.css'
 
 function Login(props) {
 
-    const matches = useMediaQuery('(min-width:720px)');
+    const matches = useMediaQuery('(min-width:1200px)');
 
     const history = useHistory();
 
@@ -57,16 +57,18 @@ function Login(props) {
 
     return (
         <>
+            <br></br>
             {/* BIENVENIDO A ... */}
             {contextUser ? <>
-                <Container style={matches ? { width: "50%" } : {}}>
+                <Container style={matches ? { width: "50%" } : { height: "100vh" }}>
                     <h1 style={{ textAlign: "center" }}>Actualmente en sesión con el correo: {contextUser.email}</h1>
-                    <Button variant="contained" color="primary" onClick={logout}>Cerrar sesión</Button>
+                    <Button fullWidth variant="contained" color="primary" onClick={logout}>Cerrar sesión</Button>
                 </Container>
             </> : <>
-                <Container style={matches ? { width: "50%" } : {}}>
+                <Container style={matches ? { width: "50%" } : { height: "100vh" }}>
                     <h1 style={{ textAlign: "center" }}>Iniciar Sesión</h1>
                     <Input
+                        style={{ backgroundColor: "white" }}
                         placeholder="Email"
                         label="Email"
                         id="email"
@@ -77,6 +79,7 @@ function Login(props) {
                     />
                     <br />
                     <Input
+                        style={{ backgroundColor: "white" }}
                         placeholder="Password"
                         label="Password"
                         id="password"
