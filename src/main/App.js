@@ -21,8 +21,6 @@ import { UserContext } from "../helpers/userContext/userContext";
 import ProjectPresentation from "../components/projectPresentation/projectPresentation";
 import About from "../components/about/About";
 import Info from "../components/info/Info";
-import NotReady from "../components/notReady/notReady";
-
 
 import GameCover from "../components/gameCover/gameCover";
 
@@ -86,7 +84,6 @@ function App() {
                     <Route path="/project_presentation" component={ProjectPresentation} />
                     <Route path="/authors" component={About} />
                     <Route path="/info" component={Info} />
-                    <Route path="/X035" component={NotReady} />
 
                     {/* auth paths */}
                     <Route path="/login" component={Login} setUser={setUser} />

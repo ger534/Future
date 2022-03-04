@@ -111,6 +111,7 @@ const mainCards = [
 ]
 
 let tales = [
+  { title: "X035", file_name: "X035", route: "/X035", cover: X035 },
   { title: "El Elegido", file_name: "the-choosen-one", route: "/the-choosen-one", cover: ChoosenOne },
   { title: "El último marciano", file_name: "the-last-martian", route: "/the-last-martian", cover: lastMartian },
 ]
