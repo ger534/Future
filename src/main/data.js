@@ -13,7 +13,6 @@ import HolaMundo from '../assets/Arte_305_Fondo_V3.png'
 import ChosenOne from '../assets/the-chosen-one.jpeg'
 import lastMartian from '../assets/the-last-martian.jpeg'
 import TheIsland from '../assets/the-island.jpeg'
-import island from '../assets/island.jpeg'
 
 //char images
 import character_503 from '../assets/Arte_503_Full_Body.png'
