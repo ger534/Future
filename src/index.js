@@ -17,7 +17,6 @@ import app from './helpers/firebase/firebase'
 import { getAnalytics } from 'firebase/analytics';
 
 const analytics = getAnalytics(app);
-console.log(analytics)
 
 ReactDOM.render(
   <App />,

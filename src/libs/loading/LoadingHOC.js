@@ -10,8 +10,6 @@ export const LoadingHOC = (WrappedText) => {
       <>
         {loading && <Loading />}
         {<WrappedText {...props} setLoading={setLoading} loading={loading} />}
-        {/*text === "error" &&
-          <div style={{ display: "flex", flexDirection: "column", alignContent: "stretch", alignItems: "center" }} > <WarningIcon fontSize="large" /> Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web </div>*/}
       </>
     )
   }
@@ -19,5 +17,4 @@ export const LoadingHOC = (WrappedText) => {
   return HOC;
 
 }
-//"Las fuerzas del universo han conspirado contra ti y se ha generado un error en el sitio web"
 export default LoadingHOC;

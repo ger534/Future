@@ -10,10 +10,6 @@ import './modal.css'
 
 function Modal(props) {
 
-    /*const handleClickOpen = () => {
-        props.setOpen(true);
-    };*/
-
     const handleClose = () => {
         props.setOpen(false);
     };

@@ -10,8 +10,10 @@ import Epilogo from '../assets/Arte_Escena_Nave_Ganso.png'
 
 //game cover image
 import HolaMundo from '../assets/Arte_305_Fondo_V3.png'
-import ChoosenOne from '../assets/the-choosen-one.jpeg'
+import ChosenOne from '../assets/the-chosen-one.jpeg'
 import lastMartian from '../assets/the-last-martian.jpeg'
+import TheIsland from '../assets/the-island.jpeg'
+import island from '../assets/island.jpeg'
 
 //char images
 import character_503 from '../assets/Arte_503_Full_Body.png'
@@ -66,8 +68,8 @@ const mainPlays = [
   },
   {
     title: "El Elegido",
-    route: "/the-choosen-one",
-    image: ChoosenOne,
+    route: "/the-chosen-one",
+    image: ChosenOne,
     author: "Steven Cubillo"
   },
   {
@@ -75,6 +77,12 @@ const mainPlays = [
     route: "/the-last-martian",
     image: lastMartian,
     author: "Henry Caamaño"
+  },
+  {
+    title: "La isla",
+    route: "/the-island",
+    image: TheIsland,
+    author: "W.Smayler"
   },
 ]
 
@@ -108,8 +116,9 @@ const mainCards = [
 
 let tales = [
   { title: "X035", file_name: "X035", route: "/X035", cover: X035 },
-  { title: "El Elegido", file_name: "the-choosen-one", route: "/the-choosen-one", cover: ChoosenOne },
+  { title: "El Elegido", file_name: "the-chosen-one", route: "/the-chosen-one", cover: ChosenOne },
   { title: "El último marciano", file_name: "the-last-martian", route: "/the-last-martian", cover: lastMartian },
+  { title: "La isla", file_name: "the-island", route: "/the-island", cover: TheIsland },
 ]
 
 let chapters = [
@@ -123,7 +132,7 @@ let chapters = [
   { title: "Ludópatas", file_name: "7-gamblers", route: "/7-gamblers", next: "/8-ambivalence" },
   { title: "Ambivalencia", file_name: "8-ambivalence", route: "/8-ambivalence", next: "/" },
   
-  { title: "El Elegido", file_name: "the-choosen-one", route: "/the-choosen-one", next: "/" },
+  { title: "El Elegido", file_name: "the-chosen-one", route: "/the-chosen-one", next: "/" },
 ]
 
 export {
